@@ -44,6 +44,29 @@ async function loadState(): Promise<PipelineState | null> {
   }
 }
 
+/**
+ * Load last release artifact SHA256s from GitHub API
+ */
+async function loadLastReleaseArtifacts(source: string, owner: string, repo: string, token: string): Promise<Record<string, { sha256: string; size: number }> | null> {
+  try {
+    const tag = `${source}-${new Date().toISOString().split('T')[0]}`;
+    const { Octokit } = await import('@octokit/rest');
+    const octokit = new Octokit({ auth: token });
+    const response = await octokit.repos.getReleaseByTag({ owner, repo, tag });
+    const release = response.data;
+    
+    const artifacts: Record<string, { sha256: string; size: number }> = {};
+    for (const asset of release.assets) {
+      // We can't get SHA256 from GitHub API - use size as approximate
+      // For real delta, we'd need to track in versions.json
+      artifacts[asset.name] = { sha256: '', size: asset.size };
+    }
+    return artifacts;
+  } catch {
+    return null;
+  }
+}
+
 async function saveState(state: PipelineState): Promise<void> {
   await fs.writeFile(STATE_FILE, JSON.stringify(state, null, 2));
 }
@@ -141,6 +164,18 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       console.log('[phase:compress] Compressing to ZST...');
       if (!state.groupedDats) {
         throw new Error('No grouped DATs - run group phase first');
+      }
+      
+      // Load last release artifacts for comparison
+      const lastArtifacts = await loadLastReleaseArtifacts(
+        options.source,
+        process.env.GITHUB_OWNER || 'Mesh-ARKade',
+        process.env.GITHUB_REPO || `metadat-${options.source}`,
+        process.env.GITHUB_TOKEN || ''
+      );
+      if (lastArtifacts) {
+        state.lastArtifacts = lastArtifacts;
+        console.log('[phase:compress] Loaded last release artifacts for comparison');
       }
       
       const artifacts: Artifact[] = [];
