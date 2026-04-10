@@ -14,9 +14,7 @@ on:
   pull_request:
     branches: [main]
 
-# Let GitHub pick runner for jobs (default behavior)
 jobs:
-  # Job 1: Just compile and send STARTED notification
   setup:
     runs-on: ubuntu-latest
     outputs:
@@ -59,7 +57,6 @@ jobs:
           path: dist
           retention-days: 1
 
-  # Job 2: Run tests and pipeline
   pipeline:
     needs: setup
     runs-on: ubuntu-latest
@@ -88,7 +85,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Check for updates (version check)
+      - name: Check for updates
         id: version-check
         run: |
           echo "Checking for updates..."
@@ -106,14 +103,13 @@ jobs:
           GITHUB_OWNER: Mesh-ARKade
           GITHUB_REPO: metadat-nointro
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           if [ "${{ github.event.inputs.dry-run }}" == "true" ]; then
             echo "Running in dry-run mode..."
-            node dist/core/pipeline.js --dry-run --source no-intro --skip-notification
+            node dist/core/pipeline.js --dry-run --source no-intro
           else
             echo "Running full pipeline..."
-            node dist/core/pipeline.js --source no-intro --skip-notification
+            node dist/core/pipeline.js --source no-intro
           fi
 
       - name: Upload artifacts
@@ -129,7 +125,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # gh release create ...
           echo "Creating release..."
 
       - name: Send Discord notification (skipped)
