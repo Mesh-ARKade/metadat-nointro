@@ -49,7 +49,7 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
         run: |
-          node dist/scripts/notify.js started no-intro
+          node dist/core/notify.js started no-intro
 
   run-pipeline:
     needs: build
@@ -114,7 +114,7 @@ jobs:
           PIPELINE_DURATION: ${{ github.step.duration }}
           PIPELINE_RELEASE_URL: ${{ steps.create-release.outputs.release_url }}
         run: |
-          node dist/scripts/notify.js success no-intro
+          node dist/core/notify.js success no-intro
 
       - name: Send Discord notification (failure)
         if: failure()
@@ -125,7 +125,7 @@ jobs:
           GITHUB_SERVER_URL: ${{ github.server_url }}
           PIPELINE_ERROR: ${{ steps.run-pipeline.outputs.error }}
         run: |
-          node dist/scripts/notify.js failure no-intro
+          node dist/core/notify.js failure no-intro
 
   skip-notification:
     needs: build
@@ -145,4 +145,4 @@ jobs:
           PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
           PIPELINE_SKIP_REASON: ${{ steps.version-check.outputs.skip_reason }}
         run: |
-          node dist/scripts/notify.js skipped no-intro
+          node dist/core/notify.js skipped no-intro

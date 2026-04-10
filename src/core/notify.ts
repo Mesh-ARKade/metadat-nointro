@@ -1,6 +1,6 @@
 /**
  * Send Discord notification from workflow
- * Usage: node dist/scripts/notify.js <event> <source>
+ * Usage: node dist/core/notify.js <event> <source>
  * 
  * Environment variables:
  *   DISCORD_WEBHOOK_URL
@@ -9,8 +9,8 @@
  *   GITHUB_SERVER_URL
  */
 
-import { DiscordNotifier, EMBED_COLORS } from '../core/notifier.js';
-import { getEmbedColor } from '../core/notifier.js';
+import { DiscordNotifier } from './notifier.js';
+import type { PipelineEvent } from '../types/index.js';
 
 // Parse args
 const eventType = process.argv[2] || 'success';
@@ -28,17 +28,17 @@ const serverUrl = process.env.GITHUB_SERVER_URL || 'https://github.com';
 const actionUrl = `${serverUrl}/${githubRepo}/actions/runs/${runId}`;
 
 // Build event data
-const event = {
-  type: eventType,
+const event: PipelineEvent = {
+  type: eventType as PipelineEvent['type'],
   source,
   timestamp: new Date().toISOString(),
   actionUrl,
   
   // These would be populated from actual pipeline results
   version: process.env.PIPELINE_VERSION || '',
-  entryCount: parseInt(process.env.PIPELINE_ENTRIES || '0', 10),
-  artifactCount: parseInt(process.env.PIPELINE_ARTIFACTS || '0', 10),
-  duration: parseInt(process.env.PIPELINE_DURATION || '0', 10),
+  entryCount: parseInt(process.env.PIPELINE_ENTRIES || '0', 10) || undefined,
+  artifactCount: parseInt(process.env.PIPELINE_ARTIFACTS || '0', 10) || undefined,
+  duration: parseInt(process.env.PIPELINE_DURATION || '0', 10) || undefined,
   
   // For success - stats
   stats: process.env.PIPELINE_STATS 
@@ -63,6 +63,6 @@ try {
   await notifier.notify(event);
   console.log('[notify] Notification sent successfully');
 } catch (err) {
-  console.error('[notify] Failed to send notification:', err.message);
+  console.error('[notify] Failed to send notification:', (err as Error).message);
   process.exit(1);
 }
