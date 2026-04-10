@@ -93,13 +93,23 @@ jobs:
 
       - name: Send Discord notification (success)
         if: steps.version-check.outputs.skip == 'false' && success()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          echo "Sending success notification..."
+          curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"content": "✅ metadat-nointro pipeline completed"}' \
+            "$DISCORD_WEBHOOK_URL"
 
       - name: Send Discord notification (failure)
         if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          echo "Sending failure notification..."
+          curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"content": "❌ metadat-nointro pipeline failed"}' \
+            "$DISCORD_WEBHOOK_URL"
 
   skip-notification:
     needs: build
@@ -111,5 +121,10 @@ jobs:
           echo "No updates found, skipping pipeline..."
 
       - name: Send Discord notification (skipped)
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          echo "Sending skipped notification..."
+          curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"content": "⏭️ metadat-nointro skipped - no changes"}' \
+            "$DISCORD_WEBHOOK_URL"
