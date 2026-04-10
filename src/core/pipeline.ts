@@ -160,7 +160,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
       sources: [{
         name: options.source as 'no-intro' | 'tosec' | 'redump' | 'mame',
         repo: `Mesh-ARKade/metadat-${options.source}`,
-        release: `${options.source}-${new Date().toISOString().split('T')[0].replace(/-/g, '')}`,
+        release: `${options.source}-${new Date().toISOString().split('T')[0]}`,
         date: new Date().toISOString().split('T')[0],
         artifacts: artifacts.map(a => ({
           name: a.name,
