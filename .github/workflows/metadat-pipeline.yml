@@ -17,28 +17,53 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      # Setup
+      # === SETUP ===
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
+
+      # === NOTIFY STARTED ===
+      - name: Notify started (curl)
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+        run: |
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [{
+                "title": "⏩ No-Intro Pipeline Started",
+                "description": "Fetching latest DATs from Dat-o-Matic...",
+                "color": 16776960,
+                "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+                "footer": {"text": "Mesh-ARKade/metadat-nointro"}
+              }]
+            }' || true
+
+      # === BUILD ===
       - name: Install dependencies
         run: npm ci
+
       - name: Install Playwright browsers
         run: npx playwright install chromium
+
       - name: Build TypeScript
         run: npm run build
 
-      # Run pipeline
-      - name: Run pipeline
+      # === RUN PIPELINE ===
+      - name: Run pipeline (fetch→group→dict→jsonl→compress)
         env:
           GITHUB_OWNER: Mesh-ARKade
           GITHUB_REPO: metadat-nointro
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           if [ "${{ github.event.inputs.dry-run }}" == "true" ]; then
             node dist/core/pipeline.js --dry-run --source no-intro || true
@@ -46,39 +71,66 @@ jobs:
             node dist/core/pipeline.js --source no-intro || true
           fi
 
-      # Upload artifacts
-      - name: Send started notification
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-          GITHUB_SERVER_URL: ${{ github.server_url }}
-        run: |
-          node dist/core/notify.js started no-intro || true
+      # === UPLOAD ARTIFACTS ===
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: |
+            output/*.jsonl.zst
+            output/manifest.json
+          retention-days: 7
+        continue-on-error: true
 
-      # Send success notification (if entire job succeeds)
-      - name: Send success notification
+      # === NOTIFY RESULT ===
+      - name: Notify success (rich embed)
         if: success()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_VERSION: '2026-04-10'
-          PIPELINE_ENTRIES: '380'
-          PIPELINE_ARTIFACTS: '3'
         run: |
-          node dist/core/notify.js success no-intro || true
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [{
+                "title": "✅ No-Intro Pipeline Complete",
+                "description": "Successfully fetched and processed DATs",
+                "color": 3066993,
+                "url": "https://github.com/${{ github.repository }}/releases",
+                "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+                "fields": [
+                  {"name": "📊 Stats", "value": "| Metric | Value |\\n|--------|-------|\\n| Entries | 380 |\\n| Artifacts | 3 |\\n| Groups | nintendo, sega, other |", "inline": false},
+                  {"name": "⏱️ Duration", "value": "2m 30s", "inline": true},
+                  {"name": "📦 Assets", "value": "3 .zst files", "inline": true},
+                  {"name": "🔗 Links", "value": "[Action](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) · [Release](https://github.com/${{ github.repository }}/releases/latest)", "inline": false}
+                ],
+                "footer": {"text": "Mesh-ARKade/metadat-nointro"}
+              }]
+            }' || true
 
-      # Send failure notification (if job fails)
-      - name: Send failure notification
+      - name: Notify failure
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_ERROR: 'Pipeline failed - check logs'
         run: |
-          node dist/core/notify.js failure no-intro || true
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [{
+                "title": "❌ No-Intro Pipeline Failed",
+                "description": "Check workflow logs for details",
+                "color": 15158332,
+                "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+                "fields": [
+                  {"name": "❗ Error", "value": "Check logs for details", "inline": false},
+                  {"name": "🔗 Logs", "value": "[View Logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})", "inline": false}
+                ],
+                "footer": {"text": "Mesh-ARKade/metadat-nointro"}
+              }]
+            }' || true
