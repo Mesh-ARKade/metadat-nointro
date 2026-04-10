@@ -101,7 +101,7 @@ export async function compressWithDictionary(
 }
 
 /**
- * Train a zstd dictionary from sample data
+ * Train a zstd dictionary from sample data using the zstd CLI
  * @param samples Array of sample strings
  * @param dictionaryPath Path to save dictionary file
  */
@@ -109,25 +109,43 @@ export async function trainDictionary(
   samples: string[], 
   dictionaryPath: string
 ): Promise<void> {
-  // For dictionary training, we need the zstd CLI
-  // Since Node 22 doesn't have dictionary training API, we'll use a simpler approach:
-  // Collect all samples and compress them together to create a "dictionary-like" effect
+  const { exec } = await import('child_process');
+  const { promisify } = await import('util');
+  const execAsync = promisify(exec);
   
-  const combinedSamples = samples.join('\n');
-  const combinedBuffer = Buffer.from(combinedSamples, 'utf-8');
-  
-  // Create a pseudo-dictionary by compressing samples at different levels
-  // and using the compressed result as a reference
-  // Note: True dictionary training requires the zstd CLI or a C++ binding
-  
-  // For the template, we'll note this is a simplified implementation
-  // Real dictionary training would require external zstd CLI or library
-  
-  // For now, create a placeholder that can be used for compression tests
-  const dictContent = zlib.zstdCompressSync(combinedBuffer, { level: 1 } as zlib.ZstdOptions);
-  
+  // Ensure output directory exists
   await fs.mkdir(path.dirname(dictionaryPath), { recursive: true }).catch(() => {});
-  await fs.writeFile(dictionaryPath, dictContent);
+  
+  // Create temporary directory for sample files
+  const tmpDir = path.join(path.dirname(dictionaryPath), '.tmp_samples');
+  await fs.mkdir(tmpDir, { recursive: true });
+  
+  try {
+    // Write samples to temporary files (zstd CLI requires files, not stdin)
+    const sampleFiles: string[] = [];
+    for (let i = 0; i < samples.length; i++) {
+      const sampleFile = path.join(tmpDir, `sample_${i}.txt`);
+      await fs.writeFile(sampleFile, samples[i]);
+      sampleFiles.push(sampleFile);
+    }
+    
+    // Train dictionary using zstd CLI
+    // zstd --train -o <dict> <samples...>
+    const sampleArgs = sampleFiles.join(' ');
+    const cmd = `zstd --train -o "${dictionaryPath}" ${sampleArgs}`;
+    
+    await execAsync(cmd);
+    
+    console.log(`[compressor] Dictionary trained: ${dictionaryPath}`);
+    
+  } finally {
+    // Clean up temporary files
+    try {
+      await fs.rm(tmpDir, { recursive: true, force: true });
+    } catch {
+      // Ignore cleanup errors
+    }
+  }
 }
 
 /**
