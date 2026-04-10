@@ -41,6 +41,16 @@ jobs:
       - name: Build TypeScript
         run: npm run build
 
+      - name: Send Discord notification (started)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+        run: |
+          node dist/scripts/notify.js started no-intro
+
   run-pipeline:
     needs: build
     runs-on: ubuntu-latest
@@ -95,21 +105,27 @@ jobs:
         if: steps.version-check.outputs.skip == 'false' && success()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
+          PIPELINE_ENTRIES: ${{ steps.version-check.outputs.entries }}
+          PIPELINE_ARTIFACTS: ${{ steps.version-check.outputs.artifacts }}
+          PIPELINE_DURATION: ${{ github.step.duration }}
+          PIPELINE_RELEASE_URL: ${{ steps.create-release.outputs.release_url }}
         run: |
-          curl -X POST \
-            -H 'Content-Type: application/json' \
-            -d '{"content": "✅ metadat-nointro pipeline completed"}' \
-            "$DISCORD_WEBHOOK_URL"
+          node dist/scripts/notify.js success no-intro
 
       - name: Send Discord notification (failure)
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          PIPELINE_ERROR: ${{ steps.run-pipeline.outputs.error }}
         run: |
-          curl -X POST \
-            -H 'Content-Type: application/json' \
-            -d '{"content": "❌ metadat-nointro pipeline failed"}' \
-            "$DISCORD_WEBHOOK_URL"
+          node dist/scripts/notify.js failure no-intro
 
   skip-notification:
     needs: build
@@ -123,8 +139,10 @@ jobs:
       - name: Send Discord notification (skipped)
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
+          PIPELINE_SKIP_REASON: ${{ steps.version-check.outputs.skip_reason }}
         run: |
-          curl -X POST \
-            -H 'Content-Type: application/json' \
-            -d '{"content": "⏭️ metadat-nointro skipped - no changes"}' \
-            "$DISCORD_WEBHOOK_URL"
+          node dist/scripts/notify.js skipped no-intro
