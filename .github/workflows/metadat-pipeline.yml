@@ -68,11 +68,9 @@ jobs:
 
       - name: Phase 6 - Create Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           GITHUB_REPO: metadat-nointro
-        run: |
-          echo "Skipping release - need to configure GITHUB_TOKEN with repo scope"
-          # node dist/scripts/pipeline-phase.js --source no-intro --phase release
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase release
 
       # === UPLOAD ARTIFACTS ===
       - name: Upload artifacts
