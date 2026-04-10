@@ -11,15 +11,16 @@
 import { parseArgs } from 'util';
 import path from 'path';
 import fs from 'fs/promises';
-import { VersionTracker } from '../src/core/version-tracker.js';
-import { validateFile, checkExtension, extractGameEntries } from '../src/core/validator.js';
-import { compress } from '../src/core/compressor.js';
-import { GitHubReleaser } from '../src/core/releaser.js';
-import { DiscordNotifier } from '../src/core/notifier.js';
-import type { DAT, GroupedDATs, Artifact, PipelineEvent } from '../src/types/index.js';
+import { VersionTracker } from './version-tracker.js';
+      // Remove unused imports - keeping for reference
+      // import { validateFile, checkExtension, extractGameEntries } from './validator.js';
+import { compress } from './compressor.js';
+import { GitHubReleaser } from './releaser.js';
+import { DiscordNotifier } from './notifier.js';
+import type { DAT, GroupedDATs, Artifact, PipelineEvent } from '../types/index.js';
 
-import { NoIntroFetcher } from '../src/fetchers/no-intro-fetcher.js';
-import { NoIntroGroupStrategy } from '../src/strategies/no-intro-grouping.js';
+import { NoIntroFetcher } from '../fetchers/no-intro-fetcher.js';
+import { NoIntroGroupStrategy } from '../strategies/no-intro-grouping.js';
 
 interface PipelineOptions {
   dryRun: boolean;
@@ -38,9 +39,10 @@ function datsToJSONL(dats: DAT[]): string {
 /**
  * Generate artifact name from source and group
  */
-function generateArtifactName(source: string, group: string): string {
-  return `${source}--${group}.jsonl.zst`;
-}
+      // Remove unused code for now
+      // function generateArtifactName(source: string, group: string): string {
+      //   return `${source}--${group}.jsonl.zst`;
+      // }
 
 /**
  * Main pipeline orchestration
@@ -98,7 +100,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
     
     if (dats.length === 0) {
       console.log('[pipeline] No DATs fetched, skipping...');
-      const duration = Math.floor((Date.now() - startTime) / 1000);
+      // const duration = Math.floor((Date.now() - startTime) / 1000);
       return;
     }
     
@@ -141,7 +143,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
         path: artifact.path,
         size: artifact.size,
         sha256: artifact.sha256,
-        systems: groupDats.map(d => ({ id: d.system, name: d.system, gameCount: 1 }))
+        entryCount: artifact.entryCount
       });
       
       console.log(`[pipeline] Created: ${zstFileName} (${artifact.size} bytes)`);
@@ -163,8 +165,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
           name: a.name,
           url: `https://github.com/Mesh-ARKade/metadat-${options.source}/releases/latest/${a.name}`,
           size: a.size,
-          sha256: a.sha256,
-          systems: a.systems
+          sha256: a.sha256
         }))
       }]
     };
