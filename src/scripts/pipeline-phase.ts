@@ -32,7 +32,7 @@ interface PipelineState {
   artifacts?: Artifact[];
   dictPath?: string;
   // Last release artifact SHA256s for incremental detection
-  lastArtifacts?: Record<string, { sha256: string; size: number }>;
+  lastArtifacts?: Record<string, string>;
 }
 
 async function loadState(): Promise<PipelineState | null> {
@@ -44,28 +44,6 @@ async function loadState(): Promise<PipelineState | null> {
   }
 }
 
-/**
- * Load last release artifact SHA256s from GitHub API
- */
-async function loadLastReleaseArtifacts(source: string, owner: string, repo: string, token: string): Promise<Record<string, { sha256: string; size: number }> | null> {
-  try {
-    const tag = `${source}-${new Date().toISOString().split('T')[0]}`;
-    const { Octokit } = await import('@octokit/rest');
-    const octokit = new Octokit({ auth: token });
-    const response = await octokit.repos.getReleaseByTag({ owner, repo, tag });
-    const release = response.data;
-    
-    const artifacts: Record<string, { sha256: string; size: number }> = {};
-    for (const asset of release.assets) {
-      // We can't get SHA256 from GitHub API - use size as approximate
-      // For real delta, we'd need to track in versions.json
-      artifacts[asset.name] = { sha256: '', size: asset.size };
-    }
-    return artifacts;
-  } catch {
-    return null;
-  }
-}
 
 async function saveState(state: PipelineState): Promise<void> {
   await fs.writeFile(STATE_FILE, JSON.stringify(state, null, 2));
@@ -166,14 +144,10 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         throw new Error('No grouped DATs - run group phase first');
       }
       
-      // Load last release artifacts for comparison
-      const lastArtifacts = await loadLastReleaseArtifacts(
-        options.source,
-        process.env.GITHUB_OWNER || 'Mesh-ARKade',
-        process.env.GITHUB_REPO || `metadat-${options.source}`,
-        process.env.GITHUB_TOKEN || ''
-      );
-      if (lastArtifacts) {
+      // Load last release artifact hashes from versions.json for comparison
+      const versionTracker = new VersionTracker('./versions.json');
+      const lastArtifacts = await versionTracker.getArtifactHashes(options.source);
+      if (lastArtifacts && Object.keys(lastArtifacts).length > 0) {
         state.lastArtifacts = lastArtifacts;
         console.log('[phase:compress] Loaded last release artifacts for comparison');
       }
@@ -214,8 +188,8 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         
         // Track op for incremental release
         let op: 'upsert' | 'unchanged' = 'upsert';
-        const lastArtifact = state.lastArtifacts?.[artifact.name];
-        if (lastArtifact && lastArtifact.sha256 === artifact.sha256) {
+        const lastSha = state.lastArtifacts?.[artifact.name];
+        if (lastSha && lastSha === artifact.sha256) {
           op = 'unchanged';
           console.log(`[phase:compress] Unchanged: ${zstFileName}`);
         }
@@ -272,6 +246,9 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         throw new Error('No artifacts - run compress phase first');
       }
       
+      // Create version tracker for saving hashes
+      const versionTracker = new VersionTracker('./versions.json');
+      
       const releaser = new GitHubReleaser(
         process.env.GITHUB_OWNER || 'Mesh-ARKade',
         process.env.GITHUB_REPO || (options.source === 'no-intro' ? 'metadat-nointro' : `metadat-${options.source}`),
@@ -299,6 +276,16 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       const releaseArtifacts: Artifact[] = [...artifactsToUpload, manifestArtifact];
       const tag = `${options.source}-${new Date().toISOString().split('T')[0]}`;
       await releaser.createReleaseIncremental(tag, releaseArtifacts);
+      
+      // Save artifact hashes for next incremental release
+      const artifactHashes: Record<string, string> = {};
+      for (const a of state.artifacts) {
+        if (a.sha256) {
+          artifactHashes[a.name] = a.sha256;
+        }
+      }
+      await versionTracker.saveArtifactHashes(options.source, artifactHashes);
+      console.log('[phase:release] Saved artifact hashes for incremental tracking');
       
       // Clean up state file
       await fs.unlink(STATE_FILE).catch(() => {});

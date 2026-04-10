@@ -137,4 +137,6 @@ export interface VersionInfo {
   version: string;
   /** ISO timestamp of last check */
   lastChecked: string;
+  /** Artifact SHA256 hashes for incremental releases */
+  artifacts?: Record<string, string>;
 }
