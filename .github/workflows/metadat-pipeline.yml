@@ -48,18 +48,28 @@ jobs:
       - name: Build TypeScript
         run: npm run build
 
-      # === RUN PIPELINE (single step - runs all stages) ===
-      - name: Run pipeline
+      # === PIPELINE PHASES ===
+      - name: Phase 1 - Fetch DATs
         env:
           GITHUB_OWNER: Mesh-ARKade
-          GITHUB_REPO: metadat-nointro
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase fetch
+
+      - name: Phase 2 - Group DATs
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase group
+
+      - name: Phase 3 - Train Dictionary
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase dict || echo "Dictionary skipped"
+
+      - name: Phase 4 - Create JSONL
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase jsonl
+
+      - name: Phase 5 - Compress
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase compress
+
+      - name: Phase 6 - Create Release
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ github.event.inputs.dry-run }}" == "true" ]; then
-            node dist/core/pipeline.js --dry-run --source no-intro
-          else
-            node dist/core/pipeline.js --source no-intro
-          fi
+        run: node dist/scripts/pipeline-phase.js --source no-intro --phase release
 
       # === UPLOAD ARTIFACTS ===
       - name: Upload artifacts
