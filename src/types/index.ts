@@ -50,6 +50,8 @@ export interface Artifact {
   sha256: string;
   /** Number of games/entries in this artifact */
   entryCount: number;
+  /** Operation type for incremental updates */
+  op?: 'upsert' | 'unchanged';
   /** Optional URL if uploaded to a release */
   url?: string;
   /** Optional dictionary path used for compression */

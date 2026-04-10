@@ -31,6 +31,8 @@ interface PipelineState {
   groupedDats?: GroupedDATs;
   artifacts?: Artifact[];
   dictPath?: string;
+  // Last release artifact SHA256s for incremental detection
+  lastArtifacts?: Record<string, { sha256: string; size: number }>;
 }
 
 async function loadState(): Promise<PipelineState | null> {
@@ -175,14 +177,25 @@ async function runPhase(options: PhaseOptions): Promise<void> {
           artifact = await compress(jsonlContent, zstPath);
         }
         
-        artifacts.push({
+        // Track op for incremental release
+        let op: 'upsert' | 'unchanged' = 'upsert';
+        const lastArtifact = state.lastArtifacts?.[artifact.name];
+        if (lastArtifact && lastArtifact.sha256 === artifact.sha256) {
+          op = 'unchanged';
+          console.log(`[phase:compress] Unchanged: ${zstFileName}`);
+        }
+        
+        const newArtifact: Artifact = {
           name: artifact.name,
           path: artifact.path,
           size: artifact.size,
           sha256: artifact.sha256,
           entryCount: artifact.entryCount,
+          op,
           systems: groupDats.map(d => ({ id: d.system, name: d.system, gameCount: d.roms?.length || 1 }))
-        });
+        };
+        
+        artifacts.push(newArtifact);
         
         console.log(`[phase:compress] Created: ${zstFileName} (${artifact.size} bytes)`);
       }
@@ -233,18 +246,24 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       // Include manifest in release
       const manifestPath = path.join(outputDir, 'manifest.json');
       const manifestContent = await fs.readFile(manifestPath, 'utf-8');
-      const manifestArtifact = {
+      const manifestArtifact: Artifact = {
         name: 'manifest.json',
         path: manifestPath,
         size: manifestContent.length,
         sha256: '',
         entryCount: 0,
+        op: 'upsert',
         systems: []
       };
       
-      const releaseArtifacts = [...state.artifacts, manifestArtifact];
+      // Only upload changed artifacts (op: upsert) + manifest
+      const artifactsToUpload = state.artifacts.filter(a => a.op === 'upsert');
+      const unchangedCount = state.artifacts.filter(a => a.op === 'unchanged').length;
+      console.log(`[phase:release] ${artifactsToUpload.length} changed, ${unchangedCount} unchanged`);
+      
+      const releaseArtifacts: Artifact[] = [...artifactsToUpload, manifestArtifact];
       const tag = `${options.source}-${new Date().toISOString().split('T')[0]}`;
-      await releaser.createRelease(tag, releaseArtifacts);
+      await releaser.createReleaseIncremental(tag, releaseArtifacts);
       
       // Clean up state file
       await fs.unlink(STATE_FILE).catch(() => {});

@@ -27,12 +27,6 @@ export class GitHubReleaser {
    * @returns Release object
    */
   async createRelease(tag: string, artifacts: Artifact[]): Promise<Release> {
-    // Check if release already exists - delete it to update
-    const existing = await this.releaseExists(tag);
-    if (existing) {
-      console.log(`[releaser] Deleting existing release: ${tag}`);
-      await this.deleteRelease(tag);
-    }
 
     // Generate release notes
     const body = generateReleaseNotes(artifacts);
@@ -156,6 +150,52 @@ export class GitHubReleaser {
       repo: this.repo,
       release_id: releaseResponse.data.id
     });
+  }
+
+  /**
+   * Create release incrementally - only upload changed artifacts
+   */
+  async createReleaseIncremental(tag: string, artifacts: Artifact[]): Promise<Release> {
+    const exists = await this.releaseExists(tag);
+    let releaseResponse;
+    if (exists) {
+      releaseResponse = await this.octokit.repos.getReleaseByTag({
+        owner: this.owner,
+        repo: this.repo,
+        tag
+      });
+      const release = releaseResponse.data;
+      for (const artifact of artifacts) {
+        const existingAsset = release.assets.find(a => a.name === artifact.name);
+        if (existingAsset) {
+          await this.octokit.repos.deleteReleaseAsset({
+            owner: this.owner,
+            repo: this.repo,
+            asset_id: existingAsset.id
+          });
+        }
+        await this.uploadAsset(release.id, artifact);
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+      console.log(`[releaser] Updated ${artifacts.length} assets`);
+      return {
+        tag: release.tag_name,
+        name: release.name || '',
+        body: release.body || '',
+        draft: release.draft,
+        prerelease: release.prerelease,
+        assets: release.assets.map(a => ({
+          name: a.name,
+          size: a.size,
+          downloadCount: a.download_count,
+          browserDownloadUrl: a.browser_download_url
+        })),
+        htmlUrl: release.html_url,
+        createdAt: release.created_at
+      };
+    } else {
+      return this.createRelease(tag, artifacts);
+    }
   }
 }
 
