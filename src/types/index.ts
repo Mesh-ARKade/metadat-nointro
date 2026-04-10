@@ -73,6 +73,16 @@ export interface PipelineEvent {
   error?: string;
   /** Optional version info */
   version?: string;
+  /** Optional description text */
+  description?: string;
+  /** Optional skip reason (used when type is 'skipped') */
+  skipReason?: string;
+  /** Optional link to GitHub Action run */
+  actionUrl?: string;
+  /** Optional link to release */
+  releaseUrl?: string;
+  /** Optional stats table markdown (for success notifications) */
+  stats?: Array<{ metric: string; value: string }>;
 }
 
 export interface ValidationResult {
