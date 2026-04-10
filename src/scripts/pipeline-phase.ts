@@ -210,7 +210,10 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
       console.log('[phase:compress] Created: manifest.json');
       
+      // Clean up state - don't save large DATs
       state.artifacts = artifacts;
+      state.dats = undefined;
+      state.groupedDats = undefined;
       await saveState(state);
       break;
     }
