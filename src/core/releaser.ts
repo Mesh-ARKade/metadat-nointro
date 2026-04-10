@@ -27,12 +27,11 @@ export class GitHubReleaser {
    * @returns Release object
    */
   async createRelease(tag: string, artifacts: Artifact[]): Promise<Release> {
-    // Check if release already exists
+    // Check if release already exists - delete it to update
     const existing = await this.releaseExists(tag);
     if (existing) {
-      // Return existing release info
-      const release = await this.getReleaseByTag(tag);
-      return release;
+      console.log(`[releaser] Deleting existing release: ${tag}`);
+      await this.deleteRelease(tag);
     }
 
     // Generate release notes
@@ -99,6 +98,7 @@ export class GitHubReleaser {
   /**
    * Get release by tag
    */
+  /*
   private async getReleaseByTag(tag: string): Promise<Release> {
     const response = await this.octokit.repos.getReleaseByTag({
       owner: this.owner,
@@ -123,6 +123,7 @@ export class GitHubReleaser {
       createdAt: release.created_at
     };
   }
+  */
 
   /**
    * Upload a single asset to a release

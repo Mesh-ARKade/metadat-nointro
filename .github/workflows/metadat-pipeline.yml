@@ -86,10 +86,13 @@ jobs:
         if: success()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PIPELINE_ENTRIES: ${{ hashFiles('output/*.jsonl') }}
+          PIPELINE_ARTIFACTS: ${{ hashFiles('output/*.zst') }}
         run: node dist/core/notify.js success no-intro || true
 
       - name: Notify failure
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PIPELINE_ERROR: "Pipeline failed"
         run: node dist/core/notify.js failure no-intro || true
