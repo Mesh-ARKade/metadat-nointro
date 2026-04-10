@@ -48,7 +48,7 @@ jobs:
       - name: Build TypeScript
         run: npm run build
 
-      # === RUN PIPELINE ===
+      # === RUN PIPELINE (single step - runs all stages) ===
       - name: Run pipeline
         env:
           GITHUB_OWNER: Mesh-ARKade
@@ -70,17 +70,15 @@ jobs:
             output/*.jsonl.zst
             output/manifest.json
 
-      # === NOTIFY RESULT (node script) ===
+      # === NOTIFY RESULT (node) ===
       - name: Notify success (node)
         if: success()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          node dist/core/notify.js success no-intro || true
+        run: node dist/core/notify.js success no-intro || true
 
       - name: Notify failure
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          node dist/core/notify.js failure no-intro || true
+        run: node dist/core/notify.js failure no-intro || true

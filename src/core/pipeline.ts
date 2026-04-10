@@ -5,7 +5,7 @@
  * @guarantee Integrates all core components with proper error handling
  * 
  * Pipeline flow:
- *   FETCH → VALIDATE → GROUP → JSONL → TRAIN DICT → COMPRESS → MANIFEST → RELEASE → NOTIFY
+ *   FETCH → GROUP → DICT → JSONL → COMPRESS → RELEASE
  */
 
 import { parseArgs } from 'util';
@@ -49,6 +49,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
   }
 
   try {
+    // FETCH
     console.log('[pipeline] Fetching DATs...');
     const fetcher = new NoIntroFetcher(versionTracker, options.outputDir);
     const shouldSkip = await fetcher.shouldSkip();
@@ -57,13 +58,12 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
       console.log('[pipeline] Already on latest version, skipping...');
       if (!options.skipNotification) {
         const notifier = new DiscordNotifier(process.env.DISCORD_WEBHOOK_URL || '');
-        const event: PipelineEvent = {
+        await notifier.notify({
           type: 'skipped',
           source: options.source,
           timestamp: new Date().toISOString(),
           skipReason: 'Upstream unchanged'
-        };
-        await notifier.notify(event).catch(console.error);
+        }).catch(console.error);
       }
       return;
     }
@@ -76,6 +76,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
       return;
     }
     
+    // GROUP
     console.log('[pipeline] Grouping DATs...');
     const groupedDats: GroupedDATs = groupStrategy.group(dats);
     const groupNames = Object.keys(groupedDats);
@@ -85,7 +86,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
     const outputDir = options.outputDir;
     await fs.mkdir(outputDir, { recursive: true });
     
-    // Train dictionary from sample
+    // TRAIN DICT
     const dictDir = path.join(outputDir, '.dict');
     let dictPath = '';
     try {
@@ -98,6 +99,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
       console.log(`[pipeline] Dictionary skipped: ${(dictErr as Error).message}`);
     }
     
+    // JSONL + COMPRESS
     for (const groupName of groupNames) {
       const groupDats = groupedDats[groupName];
       if (!groupDats || groupDats.length === 0) continue;
@@ -135,6 +137,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
       });
     }
     
+    // MANIFEST
     console.log('[pipeline] Generating manifest...');
     const manifest = {
       version: '1.0.0',
@@ -160,6 +163,7 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
     
     const totalEntries = dats.length;
     
+    // RELEASE
     if (!options.dryRun && artifacts.length > 0) {
       console.log('[pipeline] Creating GitHub release...');
       const releaser = new GitHubReleaser(
@@ -174,15 +178,14 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
     if (!options.skipNotification) {
       const notifier = new DiscordNotifier(process.env.DISCORD_WEBHOOK_URL || '');
       const duration = Math.floor((Date.now() - startTime) / 1000);
-      const event: PipelineEvent = {
+      await notifier.notify({
         type: 'success',
         source: options.source,
         timestamp: new Date().toISOString(),
         duration,
         entryCount: totalEntries,
         artifactCount: artifacts.length
-      };
-      await notifier.notify(event).catch(console.error);
+      }).catch(console.error);
     }
     
     console.log(`[pipeline] Completed: ${totalEntries} entries → ${artifacts.length} artifacts`);
@@ -190,13 +193,12 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
   } catch (err) {
     if (!options.skipNotification) {
       const notifier = new DiscordNotifier(process.env.DISCORD_WEBHOOK_URL || '');
-      const event: PipelineEvent = {
+      await notifier.notify({
         type: 'failure',
         source: options.source,
         timestamp: new Date().toISOString(),
         error: (err as Error).message
-      };
-      await notifier.notify(event).catch(console.error);
+      }).catch(console.error);
     }
     console.error(`[pipeline] Failed: ${(err as Error).message}`);
     process.exit(1);
