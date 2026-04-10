@@ -69,6 +69,7 @@ jobs:
       - name: Phase 6 - Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: metadat-nointro
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase release
 
       # === UPLOAD ARTIFACTS ===
