@@ -230,8 +230,21 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         process.env.GITHUB_TOKEN || ''
       );
       
+      // Include manifest in release
+      const manifestPath = path.join(outputDir, 'manifest.json');
+      const manifestContent = await fs.readFile(manifestPath, 'utf-8');
+      const manifestArtifact = {
+        name: 'manifest.json',
+        path: manifestPath,
+        size: manifestContent.length,
+        sha256: '',
+        entryCount: 0,
+        systems: []
+      };
+      
+      const releaseArtifacts = [...state.artifacts, manifestArtifact];
       const tag = `${options.source}-${new Date().toISOString().split('T')[0]}`;
-      await releaser.createRelease(tag, state.artifacts);
+      await releaser.createRelease(tag, releaseArtifacts);
       
       // Clean up state file
       await fs.unlink(STATE_FILE).catch(() => {});
