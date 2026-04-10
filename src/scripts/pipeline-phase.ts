@@ -226,7 +226,7 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       
       const releaser = new GitHubReleaser(
         process.env.GITHUB_OWNER || 'Mesh-ARKade',
-        process.env.GITHUB_REPO || `metadat-${options.source}`,
+        process.env.GITHUB_REPO || (options.source === 'no-intro' ? 'metadat-nointro' : `metadat-${options.source}`),
         process.env.GITHUB_TOKEN || ''
       );
       
