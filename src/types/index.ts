@@ -54,6 +54,8 @@ export interface Artifact {
   url?: string;
   /** Optional dictionary path used for compression */
   dictionary?: string;
+  /** Systems included in this artifact (per manifest schema) */
+  systems?: Array<{ id: string; name: string; gameCount: number }>;
 }
 
 export interface PipelineEvent {

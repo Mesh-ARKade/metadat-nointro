@@ -143,7 +143,8 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
         path: artifact.path,
         size: artifact.size,
         sha256: artifact.sha256,
-        entryCount: artifact.entryCount
+        entryCount: artifact.entryCount,
+        systems: groupDats.map(d => ({ id: d.system, name: d.system, gameCount: d.roms?.length || 1 }))
       });
       
       console.log(`[pipeline] Created: ${zstFileName} (${artifact.size} bytes)`);
@@ -165,7 +166,8 @@ export async function runPipeline(options: PipelineOptions): Promise<void> {
           name: a.name,
           url: `https://github.com/Mesh-ARKade/metadat-${options.source}/releases/latest/${a.name}`,
           size: a.size,
-          sha256: a.sha256
+          sha256: a.sha256,
+          systems: a.systems || []
         }))
       }]
     };
