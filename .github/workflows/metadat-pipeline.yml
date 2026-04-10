@@ -23,6 +23,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Checkout metadat-template
+        uses: actions/checkout@v4
+        with:
+          repository: Mesh-ARKade/metadat-template
+          path: ../metadat-template
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
