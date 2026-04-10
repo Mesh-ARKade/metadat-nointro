@@ -18,7 +18,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "metadat-template/*": ["../metadat-template/dist/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "tests"]

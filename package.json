@@ -1,7 +1,7 @@
 {
-  "name": "metadat-template",
+  "name": "metadat-nointro",
   "version": "0.1.0",
-  "description": "Shared foundation for metadat repositories — validation, compression, release, notifications",
+  "description": "No-Intro metadat repository - fetches DATs from Dat-o-Matic",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,14 +11,10 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src --ext .ts",
-    "format": "prettier --write src/**/*.ts"
+    "format": "prettier --write src/**/*.ts",
+    "fetch": "node dist/fetch.js"
   },
-  "keywords": [
-    "dat",
-    "rom",
-    "preservation",
-    "template"
-  ],
+  "keywords": ["dat", "no-intro", "rom", "preservation"],
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.0.0",
@@ -32,6 +28,8 @@
   },
   "dependencies": {
     "@octokit/rest": "^22.0.1",
-    "fast-xml-parser": "^5.5.11"
+    "fast-xml-parser": "^5.5.11",
+    "playwright": "^1.59.1",
+    "metadat-template": "file:../metadat-template"
   }
 }
