@@ -87,6 +87,19 @@ describe('ZstdCompressor', () => {
 
   describe('compressWithDictionary()', () => {
     it('should compress using a pre-trained dictionary', async () => {
+      // Skip if zstd CLI is not available
+      const { execSync } = await import('child_process');
+      let hasZstd = false;
+      try {
+        execSync('zstd --version', { stdio: 'ignore' });
+        hasZstd = true;
+      } catch {
+        // zstd not available
+      }
+      if (!hasZstd) {
+        return; // skip
+      }
+
       const content = 'sample data for compression with dictionary'.repeat(50);
       const dictPath = path.join(tempDir, 'dict.zst');
       const compressedPath = path.join(tempDir, 'compressed.zst');
@@ -103,6 +116,19 @@ describe('ZstdCompressor', () => {
 
   describe('trainDictionary()', () => {
     it('should create a dictionary file from samples', async () => {
+      // Skip if zstd CLI is not available
+      const { execSync } = await import('child_process');
+      let hasZstd = false;
+      try {
+        execSync('zstd --version', { stdio: 'ignore' });
+        hasZstd = true;
+      } catch {
+        // zstd not available
+      }
+      if (!hasZstd) {
+        return; // skip
+      }
+
       const samples = [
         'sample content 1 with various words',
         'sample content 2 different data here',
