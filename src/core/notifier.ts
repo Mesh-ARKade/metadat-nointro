@@ -1,19 +1,28 @@
 /**
  * DiscordNotifier - Sends pipeline notifications to Discord webhooks
- *
+ * 
+ * Per S8 notification standard:
+ * - Fancy embeds with colors (🟡 started, 🟢 success, 🔴 failure, ⚪ skipped)
+ * - Stats tables
+ * - Links to GitHub Action run and Release
+ * 
  * @intent Send webhook notifications for pipeline events
  * @guarantee Handles started/success/failure/skipped with formatted embeds
  */
 
 import type { PipelineEvent } from '../types/index.js';
 
-/** Discord embed colors */
+/** S8 Discord embed colors (per spec) */
 export const EMBED_COLORS = {
-  started: 5652846,   // Blue
-  success: 5763714,   // Green
-  failure: 16711680,   // Red
-  skipped: 16776960   // Yellow
+  started: 16776960,   // 🟡 Yellow
+  success: 3066993,    // 🟢 Green  
+  failure: 15158332,    // 🔴 Red
+  skipped: 9807270,    // ⚪ Gray
+  warning: 16744448     // 🟠 Orange
 } as const;
+
+// S8 event emoji mapping
+// Note: Used in formatTitle(), formatDescription()
 
 /**
  * Format duration in seconds to human readable

@@ -12,7 +12,7 @@ import fs from 'fs/promises';
 import unzipper from 'unzipper';
 import { AbstractFetcher, type FetcherOptions } from '../base/base-fetcher.js';
 import { VersionTracker } from '../core/version-tracker.js';
-import type { DAT } from '../types/index.js';
+import type { DAT, RomEntry } from '../types/index.js';
 import { extractGameEntries } from '../core/validator.js';
 
 const DAT_O_MATIC_URL = 'https://datomatic.no-intro.org/?page=download&op=daily';
@@ -185,13 +185,16 @@ export class NoIntroFetcher extends AbstractFetcher {
             const systemName = filename.replace(/\.dat$/i, '');
             
             for (const game of result.games) {
+              // Extract ROM entries from game
+              const roms = extractRomsFromGame(game);
+              
               dats.push({
                 id: `${systemName}:${game.name || game.description || 'unknown'}`,
                 source: 'no-intro',
                 system: systemName,
                 datVersion: new Date().toISOString(),
                 description: game.name || game.description,
-                roms: []
+                roms
               });
             }
           }
@@ -204,6 +207,44 @@ export class NoIntroFetcher extends AbstractFetcher {
     return dats;
   }
 }
+
+/**
+ * Extract ROM entries from a game entry (No-Intro format)
+ * @param game Game object from XML parser
+ * @returns Array of ROM entries with name, size, CRC, MD5, SHA1
+ */
+function extractRomsFromGame(game: Record<string, unknown>): RomEntry[] {
+  const roms: RomEntry[] = [];
+  
+  // No-Intro format: game has 'rom' child elements
+  const romElement = game.rom;
+  if (!romElement) return roms;
+  
+  // Handle single ROM or array of ROMs
+  const romArray = Array.isArray(romElement) ? romElement : [romElement];
+  
+  for (const rom of romArray) {
+    if (!rom || typeof rom !== 'object') continue;
+    
+    const romObj = rom as Record<string, unknown>;
+    const entry: RomEntry = {
+      name: String(romObj.name || romObj['@_name'] || ''),
+      size: Number(romObj.size) || 0
+    };
+    
+    // Add checksums if present
+    if (romObj.crc) entry.crc = String(romObj.crc);
+    if (romObj.md5) entry.md5 = String(romObj.md5);
+    if (romObj.sha1) entry.sha1 = String(romObj.sha1);
+    if (romObj.sha256) entry.sha256 = String(romObj.sha256);
+    
+    if (entry.name) roms.push(entry);
+  }
+  
+  return roms;
+}
+
+
 
 // CLI entry point
 const isDirectRun = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/'));
