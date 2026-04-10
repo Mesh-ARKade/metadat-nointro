@@ -4,8 +4,8 @@
  * Groups DATs by manufacturer to keep artifact count under 1,000
  */
 
-import type { DAT, GroupedDATs } from 'metadat-template/types/index.js';
-import { IGroupStrategy } from 'metadat-template/contracts/igroup-strategy.js';
+import type { DAT, GroupedDATs } from '../types/index.js';
+import { IGroupStrategy } from '../contracts/igroup-strategy.js';
 
 /**
  * Manufacturer mapping for No-Intro systems

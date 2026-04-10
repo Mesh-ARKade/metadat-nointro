@@ -9,9 +9,9 @@
 import { chromium } from 'playwright';
 import path from 'path';
 import fs from 'fs/promises';
-import { AbstractFetcher, type FetcherOptions } from 'metadat-template/base/base-fetcher.js';
-import { VersionTracker } from 'metadat-template/core/version-tracker.js';
-import type { DAT } from 'metadat-template/types/index.js';
+import { AbstractFetcher, type FetcherOptions } from '../base/base-fetcher.js';
+import { VersionTracker } from '../core/version-tracker.js';
+import type { DAT } from '../types/index.js';
 
 const DAT_O_MATIC_URL = 'https://datomatic.no-intro.org/?page=download&op=daily';
 
