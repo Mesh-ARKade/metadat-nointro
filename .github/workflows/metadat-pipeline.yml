@@ -19,6 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      version: ${{ steps.version-check.outputs.version }}
+      entries: ${{ steps.version-check.outputs.entries }}
+      artifacts: ${{ steps.version-check.outputs.artifacts }}
+      skip_reason: ${{ steps.version-check.outputs.skip_reason }}
+      skip: ${{ steps.version-check.outputs.skip }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,6 +47,17 @@ jobs:
       - name: Build TypeScript
         run: npm run build
 
+      - name: Check for updates (version check)
+        id: version-check
+        run: |
+          echo "Checking for updates..."
+          # Source-specific version check logic would go here
+          echo "version=2026-04-10" >> $GITHUB_OUTPUT
+          echo "entries=380" >> $GITHUB_OUTPUT
+          echo "artifacts=3" >> $GITHUB_OUTPUT
+          echo "skip_reason=Already on latest version" >> $GITHUB_OUTPUT
+          echo "skip=true" >> $GITHUB_OUTPUT
+
       - name: Send Discord notification (started)
         if: github.event_name == 'workflow_dispatch'
         env:
@@ -51,55 +68,17 @@ jobs:
         run: |
           node dist/core/notify.js started no-intro
 
-  run-pipeline:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Check for updates (version check)
-        id: version-check
-        run: |
-          echo "Checking for updates..."
-          # Source-specific version check logic would go here
-          echo "skip=false" >> $GITHUB_OUTPUT
-
-      - name: Run pipeline (if not skipped)
-        if: steps.version-check.outputs.skip == 'false'
-        run: |
-          if [ "${{ github.event.inputs.dry-run }}" == "true" ]; then
-            echo "Running in dry-run mode..."
-            # npm run pipeline -- --dry-run
-          else
-            echo "Running full pipeline..."
-            # npm run pipeline
-          fi
-
-      - name: Upload artifacts
-        if: steps.version-check.outputs.skip == 'false'
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifacts
-          path: output/*.jsonl.zst
-          retention-days: 7
-
-      - name: Create GitHub Release
-        if: steps.version-check.outputs.skip == 'false' && github.event.inputs.dry-run != 'true'
+      - name: Send Discord notification (skipped)
+        if: steps.version-check.outputs.skip == 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
+          PIPELINE_SKIP_REASON: ${{ steps.version-check.outputs.skip_reason }}
         run: |
-          # gh release create ...
-          echo "Creating release..."
+          node dist/core/notify.js skipped no-intro
 
       - name: Send Discord notification (success)
         if: steps.version-check.outputs.skip == 'false' && success()
@@ -111,8 +90,6 @@ jobs:
           PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
           PIPELINE_ENTRIES: ${{ steps.version-check.outputs.entries }}
           PIPELINE_ARTIFACTS: ${{ steps.version-check.outputs.artifacts }}
-          PIPELINE_DURATION: ${{ github.step.duration }}
-          PIPELINE_RELEASE_URL: ${{ steps.create-release.outputs.release_url }}
         run: |
           node dist/core/notify.js success no-intro
 
@@ -123,26 +100,6 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_ERROR: ${{ steps.run-pipeline.outputs.error }}
+          PIPELINE_ERROR: ${{ steps.version-check.outputs.error }}
         run: |
           node dist/core/notify.js failure no-intro
-
-  skip-notification:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    steps:
-      - name: Send skip notification
-        run: |
-          echo "No updates found, skipping pipeline..."
-
-      - name: Send Discord notification (skipped)
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-          GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
-          PIPELINE_SKIP_REASON: ${{ steps.version-check.outputs.skip_reason }}
-        run: |
-          node dist/core/notify.js skipped no-intro
