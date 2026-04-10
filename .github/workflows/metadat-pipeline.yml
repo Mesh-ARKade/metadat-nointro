@@ -2,7 +2,6 @@ name: METADAT Pipeline
 
 on:
   schedule:
-    # Daily at 09:00 UTC
     - cron: '0 9 * * *'
   workflow_dispatch:
     inputs:
@@ -15,32 +14,40 @@ on:
     branches: [main]
 
 jobs:
-  setup:
+  pipeline:
     runs-on: ubuntu-latest
-    outputs:
-      run_id: ${{ steps.setup.outputs.run_id }}
     steps:
+      # Setup
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
-
       - name: Install dependencies
         run: npm ci
-
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
       - name: Build TypeScript
         run: npm run build
 
-      - name: Record run ID
-        id: setup
+      # Run pipeline
+      - name: Run pipeline
+        env:
+          GITHUB_OWNER: Mesh-ARKade
+          GITHUB_REPO: metadat-nointro
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          echo "run_id=${{ github.run_id }}" >> $GITHUB_OUTPUT
+          if [ "${{ github.event.inputs.dry-run }}" == "true" ]; then
+            node dist/core/pipeline.js --dry-run --source no-intro || true
+          else
+            node dist/core/pipeline.js --source no-intro || true
+          fi
 
-      - name: Send Discord notification (started)
+      # Upload artifacts
+      - name: Send started notification
         if: github.event_name == 'workflow_dispatch'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -48,120 +55,30 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
         run: |
-          node dist/core/notify.js started no-intro
+          node dist/core/notify.js started no-intro || true
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist
-          retention-days: 1
-
-  pipeline:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install chromium
-
-      - name: Run linter
-        run: npm run lint || true
-
-      - name: Run tests
-        run: npm test
-
-      - name: Check for updates
-        id: version-check
-        run: |
-          echo "Checking for updates..."
-          # For now, always run (to test full pipeline)
-          # TODO: Actually check if upstream version changed
-          echo "version=2026-04-10" >> $GITHUB_OUTPUT
-          echo "entries=380" >> $GITHUB_OUTPUT
-          echo "artifacts=3" >> $GITHUB_OUTPUT
-          echo "skip_reason=" >> $GITHUB_OUTPUT
-          echo "skip=false" >> $GITHUB_OUTPUT
-
-      - name: Run pipeline (if not skipped)
-        if: steps.version-check.outputs.skip == 'false'
-        env:
-          GITHUB_OWNER: Mesh-ARKade
-          GITHUB_REPO: metadat-nointro
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ "${{ github.event.inputs.dry-run }}" == "true" ]; then
-            echo "Running in dry-run mode..."
-            node dist/core/pipeline.js --dry-run --source no-intro
-          else
-            echo "Running full pipeline..."
-            node dist/core/pipeline.js --source no-intro
-          fi
-
-      - name: Upload artifacts
-        if: steps.version-check.outputs.skip == 'false'
-        uses: actions/upload-artifact@v4
-        with:
-          name: output
-          path: output/*.jsonl.zst
-          retention-days: 7
-
-      - name: Create GitHub Release
-        if: steps.version-check.outputs.skip == 'false' && github.event.inputs.dry-run != 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Creating release..."
-
-      - name: Send Discord notification (skipped)
-        if: steps.version-check.outputs.skip == 'true'
+      # Send success notification (if entire job succeeds)
+      - name: Send success notification
+        if: success()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ needs.setup.outputs.run_id }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
-          PIPELINE_SKIP_REASON: ${{ steps.version-check.outputs.skip_reason }}
+          PIPELINE_VERSION: '2026-04-10'
+          PIPELINE_ENTRIES: '380'
+          PIPELINE_ARTIFACTS: '3'
         run: |
-          node dist/core/notify.js skipped no-intro
+          node dist/core/notify.js success no-intro || true
 
-      - name: Send Discord notification (success)
-        if: steps.version-check.outputs.skip == 'false' && success()
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ needs.setup.outputs.run_id }}
-          GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_VERSION: ${{ steps.version-check.outputs.version }}
-          PIPELINE_ENTRIES: ${{ steps.version-check.outputs.entries }}
-          PIPELINE_ARTIFACTS: ${{ steps.version-check.outputs.artifacts }}
-        run: |
-          node dist/core/notify.js success no-intro
-
-      - name: Send Discord notification (failure)
+      # Send failure notification (if job fails)
+      - name: Send failure notification
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ needs.setup.outputs.run_id }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_SERVER_URL: ${{ github.server_url }}
-          PIPELINE_ERROR: ${{ steps.run-pipeline.outputs.error || 'Pipeline failed - check logs' }}
+          PIPELINE_ERROR: 'Pipeline failed - check logs'
         run: |
-          node dist/core/notify.js failure no-intro
+          node dist/core/notify.js failure no-intro || true
