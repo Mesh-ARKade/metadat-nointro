@@ -14,10 +14,16 @@
     "format": "prettier --write src/**/*.ts",
     "fetch": "node dist/fetch.js"
   },
-  "keywords": ["dat", "no-intro", "rom", "preservation"],
+  "keywords": [
+    "dat",
+    "no-intro",
+    "rom",
+    "preservation"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/unzipper": "^0.10.11",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^9.0.0",
@@ -29,6 +35,7 @@
   "dependencies": {
     "@octokit/rest": "^22.0.1",
     "fast-xml-parser": "^5.5.11",
-    "playwright": "^1.59.1"
+    "playwright": "^1.59.1",
+    "unzipper": "^0.12.3"
   }
 }

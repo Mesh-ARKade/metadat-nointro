@@ -9,9 +9,11 @@
 import { chromium } from 'playwright';
 import path from 'path';
 import fs from 'fs/promises';
+import unzipper from 'unzipper';
 import { AbstractFetcher, type FetcherOptions } from '../base/base-fetcher.js';
 import { VersionTracker } from '../core/version-tracker.js';
 import type { DAT } from '../types/index.js';
+import { extractGameEntries } from '../core/validator.js';
 
 const DAT_O_MATIC_URL = 'https://datomatic.no-intro.org/?page=download&op=daily';
 
@@ -146,12 +148,60 @@ export class NoIntroFetcher extends AbstractFetcher {
       await download.saveAs(finalPath);
       console.log(`[nointro] Downloaded: ${finalPath}`);
 
-      // TODO: Extract zip and parse DATs to return DAT[]
-      // For now return empty - extraction happens in next step
-      return [];
+      // Extract zip and parse DATs
+      const dats = await this.extractAndParse(finalPath);
+      console.log(`[nointro] Parsed ${dats.length} games`);
+
+      return dats;
     } finally {
       await browser.close();
     }
+  }
+
+  /**
+   * Extract downloaded zip and parse DAT XML files
+   * @param zipPath Path to downloaded zip file
+   * @returns Array of parsed DAT entries
+   */
+  private async extractAndParse(zipPath: string): Promise<DAT[]> {
+    const dats: DAT[] = [];
+
+    try {
+      // Open and extract the zip
+      const zip = await unzipper.Open.file(zipPath);
+      
+      for (const file of zip.files) {
+        // Only process .dat and .xml files
+        if (file.type === 'File' && /\.(dat|xml)$/i.test(file.path)) {
+          console.log(`[nointro] Parsing: ${file.path}`);
+          
+          const buffer = await file.buffer();
+          const content = buffer.toString('utf8');
+          const result = extractGameEntries(content);
+          
+          if (result.valid && result.games.length > 0) {
+            // Extract system name from filename
+            const filename = path.basename(file.path, path.extname(file.path));
+            const systemName = filename.replace(/\.dat$/i, '');
+            
+            for (const game of result.games) {
+              dats.push({
+                id: `${systemName}:${game.name || game.description || 'unknown'}`,
+                source: 'no-intro',
+                system: systemName,
+                datVersion: new Date().toISOString(),
+                description: game.name || game.description,
+                roms: []
+              });
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.error(`[nointro] Extract error: ${(err as Error).message}`);
+    }
+
+    return dats;
   }
 }
 
