@@ -9,7 +9,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import fs from 'fs/promises';
 import path from 'path';
 import os from 'os';
-import { runPipeline } from '../../scripts/pipeline.js';
 import { compress, decompress } from '../../src/core/compressor.js';
 import { VersionTracker } from '../../src/core/version-tracker.js';
 import type { DAT, Artifact } from '../../src/types/index.js';
@@ -26,11 +25,10 @@ describe('Pipeline Integration', () => {
   });
 
   describe('Pipeline orchestration', () => {
-    it('should run pipeline with mock data', async () => {
-      // This test verifies the pipeline can be instantiated
-      // Full end-to-end with actual pipeline would require environment setup
-      
-      expect(runPipeline).toBeDefined();
+    it('should import pipeline module', async () => {
+      // Pipeline moved to src/core/pipeline.ts - tested in workflow
+      const pipeline = await import('../../src/core/pipeline.js');
+      expect(pipeline.runPipeline).toBeDefined();
     });
   });
 
