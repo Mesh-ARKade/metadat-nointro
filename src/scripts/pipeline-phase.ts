@@ -35,6 +35,16 @@ interface PipelineState {
   lastArtifacts?: Record<string, string>;
 }
 
+/**
+ * Convert a string into a URL/filename-safe slug.
+ */
+function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')  // Non-alphanumeric -> hyphens
+    .replace(/^-|-$/g, '');       // Trim leading/trailing hyphens
+}
+
 async function loadState(): Promise<PipelineState | null> {
   try {
     const data = await fs.readFile(STATE_FILE, 'utf-8');
@@ -132,7 +142,7 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         if (!groupDats || groupDats.length === 0) continue;
         
         const jsonlContent = groupDats.map((d: DAT) => JSON.stringify(d)).join('\n');
-        const jsonlFileName = `${options.source}--${groupName}.jsonl`;
+        const jsonlFileName = `${options.source}--${slugify(groupName)}.jsonl`;
         const jsonlPath = path.join(outputDir, jsonlFileName);
         
         await fs.writeFile(jsonlPath, jsonlContent);
@@ -175,7 +185,7 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         if (!groupDats || groupDats.length === 0) continue;
         
         const jsonlContent = groupDats.map((d: DAT) => JSON.stringify(d)).join('\n');
-        const zstFileName = `${options.source}--${groupName}.jsonl.zst`;
+        const zstFileName = `${options.source}--${slugify(groupName)}.jsonl.zst`;
         const zstPath = path.join(outputDir, zstFileName);
         
         let artifact;
