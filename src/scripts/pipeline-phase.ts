@@ -201,7 +201,13 @@ async function runPhase(options: PhaseOptions): Promise<void> {
           sha256: artifact.sha256,
           entryCount: artifact.entryCount,
           op,
-          systems: groupDats.map(d => ({ id: d.system, name: d.system, gameCount: d.roms?.length || 1 }))
+          // Aggregate systems: count unique systems in this group
+          systems: Object.entries(
+            groupDats.reduce((acc: Record<string, number>, d) => {
+              acc[d.system] = (acc[d.system] || 0) + (d.roms?.length || 1);
+              return acc;
+            }, {})
+          ).map(([name, gameCount]) => ({ id: name, name, gameCount }))
         };
         
         artifacts.push(newArtifact);
