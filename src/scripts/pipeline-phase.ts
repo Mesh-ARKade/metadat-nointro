@@ -293,8 +293,9 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       console.log(`[phase:release] ${artifactsToUpload.length} changed, ${unchangedCount} unchanged`);
       
       const releaseArtifacts: Artifact[] = [...artifactsToUpload, manifestArtifact];
+      const allReleaseArtifacts: Artifact[] = [...state.artifacts, manifestArtifact];
       const tag = `${options.source}-${new Date().toISOString().split('T')[0]}`;
-      const release = await releaser.createReleaseIncremental(tag, releaseArtifacts);
+      const release = await releaser.createReleaseIncremental(tag, releaseArtifacts, allReleaseArtifacts);
       
       // Export variables for GitHub Actions
       if (process.env.GITHUB_ENV) {
