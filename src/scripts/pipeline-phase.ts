@@ -64,6 +64,9 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       const shouldSkip = await fetcher.shouldSkip();
       if (shouldSkip) {
         console.log('[phase:fetch] Already on latest version, skipping...');
+        if (process.env.GITHUB_ENV) {
+          await fs.appendFile(process.env.GITHUB_ENV, 'SKIP_PIPELINE=true\n');
+        }
         process.exit(0);
       }
       

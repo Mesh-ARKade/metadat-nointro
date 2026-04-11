@@ -55,18 +55,23 @@ jobs:
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase fetch
 
       - name: Phase 2 - Group DATs
+        if: env.SKIP_PIPELINE != 'true'
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase group
 
       - name: Phase 3 - Train Dictionary
+        if: env.SKIP_PIPELINE != 'true'
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase dict || echo "Dictionary skipped"
 
       - name: Phase 4 - Create JSONL
+        if: env.SKIP_PIPELINE != 'true'
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase jsonl
 
       - name: Phase 5 - Compress
+        if: env.SKIP_PIPELINE != 'true'
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase compress
 
       - name: Phase 6 - Create Release
+        if: env.SKIP_PIPELINE != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           GITHUB_REPO: metadat-nointro
@@ -74,6 +79,7 @@ jobs:
 
       # === UPLOAD ARTIFACTS ===
       - name: Upload artifacts
+        if: env.SKIP_PIPELINE != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: output
@@ -82,8 +88,14 @@ jobs:
             output/manifest.json
 
       # === NOTIFY RESULT (node) ===
+      - name: Notify skipped
+        if: success() && env.SKIP_PIPELINE == 'true'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node dist/core/notify.js skipped no-intro || true
+
       - name: Notify success (node)
-        if: success()
+        if: success() && env.SKIP_PIPELINE != 'true'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: node dist/core/notify.js success no-intro || true
