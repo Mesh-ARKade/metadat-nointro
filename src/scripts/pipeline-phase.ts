@@ -286,10 +286,20 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       // Export variables for GitHub Actions
       if (process.env.GITHUB_ENV) {
         const totalEntries = state.artifacts.reduce((sum, a) => sum + a.entryCount, 0);
+        const totalSize = state.artifacts.reduce((sum, a) => sum + a.size, 0);
+        const uploadSize = artifactsToUpload.reduce((sum, a) => sum + a.size, 0);
+        const savedSize = state.artifacts.filter(a => a.op === 'unchanged').reduce((sum, a) => sum + a.size, 0);
+        
+        const formatSize = (bytes: number) => (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+        const systemsCount = new Set(state.artifacts.flatMap(a => a.systems?.map(s => s.id) || [])).size;
+        
         const stats = [
-          { metric: 'Changed', value: artifactsToUpload.length.toString() },
-          { metric: 'Unchanged', value: unchangedCount.toString() },
-          { metric: 'Total', value: state.artifacts.length.toString() }
+          { metric: 'Total Games', value: totalEntries.toLocaleString() },
+          { metric: 'Systems', value: systemsCount.toString() },
+          { metric: 'Artifacts', value: `${artifactsToUpload.length} new / ${unchangedCount} skip` },
+          { metric: 'Upload Vol', value: formatSize(uploadSize) },
+          { metric: 'Saved BW', value: formatSize(savedSize) },
+          { metric: 'Total Size', value: formatSize(totalSize) }
         ];
         
         const envContent = [
