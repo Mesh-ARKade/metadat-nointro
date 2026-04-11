@@ -281,7 +281,26 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       
       const releaseArtifacts: Artifact[] = [...artifactsToUpload, manifestArtifact];
       const tag = `${options.source}-${new Date().toISOString().split('T')[0]}`;
-      await releaser.createReleaseIncremental(tag, releaseArtifacts);
+      const release = await releaser.createReleaseIncremental(tag, releaseArtifacts);
+      
+      // Export variables for GitHub Actions
+      if (process.env.GITHUB_ENV) {
+        const totalEntries = state.artifacts.reduce((sum, a) => sum + a.entryCount, 0);
+        const stats = [
+          { metric: 'Changed', value: artifactsToUpload.length.toString() },
+          { metric: 'Unchanged', value: unchangedCount.toString() },
+          { metric: 'Total', value: state.artifacts.length.toString() }
+        ];
+        
+        const envContent = [
+          `PIPELINE_RELEASE_URL=${release.htmlUrl}`,
+          `PIPELINE_ENTRIES=${totalEntries}`,
+          `PIPELINE_ARTIFACTS=${state.artifacts.length}`,
+          `PIPELINE_STATS=${JSON.stringify(stats)}`
+        ].join('\n') + '\n';
+        
+        await fs.appendFile(process.env.GITHUB_ENV, envContent);
+      }
       
       // Save artifact hashes for next incremental release
       const artifactHashes: Record<string, string> = {};
