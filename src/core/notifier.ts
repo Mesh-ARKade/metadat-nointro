@@ -178,9 +178,8 @@ export class DiscordNotifier {
    * Format stats as markdown table per S8 spec
    */
   private formatStatsTable(stats: Array<{ metric: string; value: string }>): string {
-    const header = '| Metric | Value |\n|--------|-------|';
     const rows = stats.map(s => `| ${s.metric} | ${s.value} |`).join('\n');
-    return `\n${header}\n${rows}\n`;
+    return `\n${rows}\n`;
   }
 
   /**
