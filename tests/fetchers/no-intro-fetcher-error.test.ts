@@ -65,7 +65,7 @@ describe('NoIntroFetcher error handling', () => {
     
     // Verify screenshot was saved to the correct path
     const screenshotCall = mockScreenshot.mock.calls[0][0];
-    expect(screenshotCall.path).toContain('playwright-error.png');
+    expect(screenshotCall.path).toContain('metadat-nointro--error-playwright.png');
   });
 
   it('should handle screenshot failure gracefully', async () => {

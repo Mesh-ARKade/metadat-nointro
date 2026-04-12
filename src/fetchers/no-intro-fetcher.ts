@@ -176,7 +176,7 @@ export class NoIntroFetcher extends AbstractFetcher {
    */
   private async captureErrorScreenshot(page: any): Promise<void> {
     try {
-      const screenshotPath = path.join(this.outputDir, 'playwright-error.png');
+      const screenshotPath = path.join(this.outputDir, 'metadat-nointro--error-playwright.png');
       await page.screenshot({ path: screenshotPath });
       console.log(`[nointro] Error screenshot saved: ${screenshotPath}`);
     } catch (screenshotErr) {
