@@ -8,10 +8,11 @@
 import { parseArgs } from 'util';
 import path from 'path';
 import fs from 'fs/promises';
+import { ZodError } from 'zod';
 import { VersionTracker } from '../core/version-tracker.js';
-import { compress, trainDictionary, compressWithDictionary } from '../core/compressor.js';
 import { GitHubReleaser } from '../core/releaser.js';
 import type { DAT, GroupedDATs, Artifact } from '../types/index.js';
+import { validatePipelineState } from '../types/index.js';
 import { NoIntroFetcher } from '../fetchers/no-intro-fetcher.js';
 import { NoIntroGroupStrategy } from '../strategies/no-intro-grouping.js';
 
@@ -26,6 +27,7 @@ interface PhaseOptions {
 const STATE_FILE = '.pipeline-state.json';
 
 interface PipelineState {
+  phase?: 'fetch' | 'group' | 'compress';
   source: string;
   dats?: DAT[];
   groupedDats?: GroupedDATs;
@@ -48,14 +50,29 @@ function slugify(name: string): string {
 async function loadState(): Promise<PipelineState | null> {
   try {
     const data = await fs.readFile(STATE_FILE, 'utf-8');
-    return JSON.parse(data);
+    const parsed = JSON.parse(data);
+    
+    // Validate loaded state against Zod schema
+    try {
+      validatePipelineState(parsed);
+    } catch (zodErr) {
+      if (zodErr instanceof ZodError) {
+        console.warn('[state] Loaded state failed validation:', zodErr.errors.map(e => e.message).join(', '));
+        // Return null to start fresh if validation fails
+        return null;
+      }
+      throw zodErr;
+    }
+    
+    return parsed;
   } catch {
     return null;
   }
 }
 
 
-async function saveState(state: PipelineState): Promise<void> {
+async function saveState(state: PipelineState, phase?: 'fetch' | 'group' | 'compress'): Promise<void> {
+  if (phase) state.phase = phase;
   await fs.writeFile(STATE_FILE, JSON.stringify(state, null, 2));
 }
 
@@ -88,7 +105,7 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       }
       
       state.dats = dats;
-      await saveState(state);
+      await saveState(state, 'fetch');
       break;
     }
     
@@ -105,11 +122,19 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       console.log(`[phase:group] Created ${groupNames.length} groups: ${groupNames.join(', ')}`);
       
       state.groupedDats = groupedDats;
-      await saveState(state);
+      await saveState(state, 'group');
       break;
     }
     
     case 'dict': {
+      console.log('[phase:dict] Checking for immutable dictionary...');
+      const { hasImmutableDictionary, trainDictionary } = await import('../core/compressor.js');
+      
+      if (hasImmutableDictionary()) {
+        console.log('[phase:dict] Immutable dictionary found, skipping training');
+        break;
+      }
+
       console.log('[phase:dict] Training dictionary...');
       if (!state.dats) {
         throw new Error('No DATs loaded - run fetch phase first');
@@ -123,6 +148,12 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       
       await trainDictionary([sample], dictPath);
       console.log(`[phase:dict] Dictionary trained: ${dictPath}`);
+      
+      // Save trained dictionary to immutable path as well for future runs
+      const IMMUTABLE_DICT_PATH = 'src/data/catalog.dict';
+      await fs.mkdir(path.dirname(IMMUTABLE_DICT_PATH), { recursive: true });
+      await fs.copyFile(dictPath, IMMUTABLE_DICT_PATH);
+      console.log(`[phase:dict] Saved to immutable path: ${IMMUTABLE_DICT_PATH}`);
       
       state.dictPath = dictPath;
       await saveState(state);
@@ -157,6 +188,8 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         throw new Error('No grouped DATs - run group phase first');
       }
       
+      const { compress, compressWithDictionary, compressWithImmutableDict, hasImmutableDictionary } = await import('../core/compressor.js');
+      
       // Load last release artifact hashes from versions.json for comparison
       const versionTracker = new VersionTracker('./versions.json');
       const lastArtifacts = await versionTracker.getArtifactHashes(options.source);
@@ -169,14 +202,15 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       const groupNames = Object.keys(state.groupedDats);
       
       // Check for dictionary
+      const useImmutable = hasImmutableDictionary();
       let dictPath = '';
-      if (state.dictPath) {
+      if (!useImmutable && state.dictPath) {
         try {
           await fs.readFile(state.dictPath);
           dictPath = state.dictPath;
-          console.log('[phase:compress] Using dictionary');
+          console.log('[phase:compress] Using temporary dictionary');
         } catch {
-          console.log('[phase:compress] Dictionary not found, using standard compression');
+          console.log('[phase:compress] Temporary dictionary not found, using standard compression');
         }
       }
       
@@ -189,7 +223,9 @@ async function runPhase(options: PhaseOptions): Promise<void> {
         const zstPath = path.join(outputDir, zstFileName);
         
         let artifact;
-        if (dictPath) {
+        if (useImmutable) {
+          artifact = await compressWithImmutableDict(jsonlContent, zstPath);
+        } else if (dictPath) {
           try {
             artifact = await compressWithDictionary(jsonlContent, zstPath, dictPath);
           } catch {
@@ -255,7 +291,7 @@ async function runPhase(options: PhaseOptions): Promise<void> {
       state.artifacts = artifacts;
       state.dats = undefined;
       state.groupedDats = undefined;
-      await saveState(state);
+      await saveState(state, 'compress');
       break;
     }
     

@@ -62,6 +62,19 @@ jobs:
         if: env.SKIP_PIPELINE != 'true'
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase dict || echo "Dictionary skipped"
 
+      - name: Auto-commit immutable dictionary
+        if: env.SKIP_PIPELINE != 'true'
+        run: |
+          if [[ `git status --porcelain src/data/catalog.dict` ]]; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add src/data/catalog.dict
+            git commit -m "chore: save immutable zstd dictionary [skip ci]"
+            git push
+          else
+            echo "No dictionary changes to commit."
+          fi
+
       - name: Phase 4 - Create JSONL
         if: env.SKIP_PIPELINE != 'true'
         run: node dist/scripts/pipeline-phase.js --source no-intro --phase jsonl
@@ -87,6 +100,15 @@ jobs:
             output/*.jsonl.zst
             output/manifest.json
 
+      # === UPLOAD ERROR SCREENSHOT ON FAILURE ===
+      - name: Upload error screenshot
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-error
+          path: output/playwright-error.png
+          retention-days: 7
+
       # === NOTIFY RESULT (node) ===
       - name: Notify skipped
         if: success() && env.SKIP_PIPELINE == 'true'
@@ -104,5 +126,5 @@ jobs:
         if: failure()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          PIPELINE_ERROR: "Pipeline failed"
+          PIPELINE_ERROR: "Pipeline failed. Check GitHub Actions Artifacts for `playwright-error.png` screenshot."
         run: node dist/core/notify.js failure no-intro || true

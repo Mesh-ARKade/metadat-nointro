@@ -1,0 +1,2531 @@
+{
+  "source": "no-intro",
+  "phase": "compress",
+  "artifacts": [
+    {
+      "name": "no-intro--acorn.jsonl.zst",
+      "path": "output\\no-intro--acorn.jsonl.zst",
+      "size": 6705,
+      "sha256": "859b5175ba2430d1d7e8dd3f3994a59655999a337c04e2c2762ad5f093bc2452",
+      "entryCount": 328,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Acorn - Archimedes (20231029-220453)",
+          "name": "Acorn - Archimedes (20231029-220453)",
+          "gameCount": 294
+        },
+        {
+          "id": "Acorn - Atom (Tapes) (Bitstream) (20230406-090500)",
+          "name": "Acorn - Atom (Tapes) (Bitstream) (20230406-090500)",
+          "gameCount": 24
+        },
+        {
+          "id": "Acorn - Risc PC (Flux) (20230506-040449)",
+          "name": "Acorn - Risc PC (Flux) (20230506-040449)",
+          "gameCount": 10
+        }
+      ]
+    },
+    {
+      "name": "no-intro--acorn-risc-os.jsonl.zst",
+      "path": "output\\no-intro--acorn-risc-os.jsonl.zst",
+      "size": 243,
+      "sha256": "280176f6bf2c6ae5681320f3f88b346cfbfc4b486531a05e241ca6fcfd6951d3",
+      "entryCount": 2,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Acorn RISC OS - Flash Media (Misc) (20221123-054527)",
+          "name": "Acorn RISC OS - Flash Media (Misc) (20221123-054527)",
+          "gameCount": 2
+        }
+      ]
+    },
+    {
+      "name": "no-intro--act.jsonl.zst",
+      "path": "output\\no-intro--act.jsonl.zst",
+      "size": 349,
+      "sha256": "870315c4aa7ebe8b7cf09de00cdd36f18cf379134312ae749a4a677144924c6f",
+      "entryCount": 11,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "ACT - Apricot PC Xi (20211125-165629)",
+          "name": "ACT - Apricot PC Xi (20211125-165629)",
+          "gameCount": 11
+        }
+      ]
+    },
+    {
+      "name": "no-intro--amstrad.jsonl.zst",
+      "path": "output\\no-intro--amstrad.jsonl.zst",
+      "size": 1467,
+      "sha256": "c3bfda5fe4b9f3ffd3271962a513ed418d4a1244df864692404f4efbf89f0c83",
+      "entryCount": 7,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Amstrad - CPC (Flux) (20230406-091045)",
+          "name": "Amstrad - CPC (Flux) (20230406-091045)",
+          "gameCount": 6
+        },
+        {
+          "id": "Amstrad - CPC (Misc) (20230406-091045)",
+          "name": "Amstrad - CPC (Misc) (20230406-091045)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--apf.jsonl.zst",
+      "path": "output\\no-intro--apf.jsonl.zst",
+      "size": 2622,
+      "sha256": "41141707fa213466de9097829e7039154f37a14387531225d2f3119b8398c1fd",
+      "entryCount": 119,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "APF - Imagination Machine (20220416-042756)",
+          "name": "APF - Imagination Machine (20220416-042756)",
+          "gameCount": 103
+        },
+        {
+          "id": "APF - MP-1000 (20240516-120119)",
+          "name": "APF - MP-1000 (20240516-120119)",
+          "gameCount": 16
+        }
+      ]
+    },
+    {
+      "name": "no-intro--apple.jsonl.zst",
+      "path": "output\\no-intro--apple.jsonl.zst",
+      "size": 31361,
+      "sha256": "4122eeafe3518a6d7fc6d1f53a93bd9078e8fc57a45b165fc25824cfdec60585",
+      "entryCount": 1946,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Apple - I (Tapes) (20230313-130448)",
+          "name": "Apple - I (Tapes) (20230313-130448)",
+          "gameCount": 44
+        },
+        {
+          "id": "Apple - II (A2R) (20251126-152740)",
+          "name": "Apple - II (A2R) (20251126-152740)",
+          "gameCount": 465
+        },
+        {
+          "id": "Apple - II (Waveform) (20251126-152740)",
+          "name": "Apple - II (Waveform) (20251126-152740)",
+          "gameCount": 2
+        },
+        {
+          "id": "Apple - II (WOZ) (20251126-152740)",
+          "name": "Apple - II (WOZ) (20251126-152740)",
+          "gameCount": 2
+        },
+        {
+          "id": "Apple - II Plus (Flux) (20211227-061630)",
+          "name": "Apple - II Plus (Flux) (20211227-061630)",
+          "gameCount": 5
+        },
+        {
+          "id": "Apple - II Plus (WOZ) (20211227-061630)",
+          "name": "Apple - II Plus (WOZ) (20211227-061630)",
+          "gameCount": 5
+        },
+        {
+          "id": "Apple - IIe (A2R) (20220718-130608)",
+          "name": "Apple - IIe (A2R) (20220718-130608)",
+          "gameCount": 3
+        },
+        {
+          "id": "Apple - IIe (Kryoflux) (20220718-130608)",
+          "name": "Apple - IIe (Kryoflux) (20220718-130608)",
+          "gameCount": 1
+        },
+        {
+          "id": "Apple - IIe (WOZ) (20220718-130608)",
+          "name": "Apple - IIe (WOZ) (20220718-130608)",
+          "gameCount": 3
+        },
+        {
+          "id": "Apple - IIGS (A2R) (20220727-120719)",
+          "name": "Apple - IIGS (A2R) (20220727-120719)",
+          "gameCount": 244
+        },
+        {
+          "id": "Apple - IIGS (WOZ) (20220727-120719)",
+          "name": "Apple - IIGS (WOZ) (20220727-120719)",
+          "gameCount": 241
+        },
+        {
+          "id": "Apple - Macintosh (A2R) (20220727-190511)",
+          "name": "Apple - Macintosh (A2R) (20220727-190511)",
+          "gameCount": 465
+        },
+        {
+          "id": "Apple - Macintosh (DC42) (20220727-190511)",
+          "name": "Apple - Macintosh (DC42) (20220727-190511)",
+          "gameCount": 20
+        },
+        {
+          "id": "Apple - Macintosh (KryoFlux) (20220727-190511)",
+          "name": "Apple - Macintosh (KryoFlux) (20220727-190511)",
+          "gameCount": 30
+        },
+        {
+          "id": "Apple - Macintosh (Uncategorized) (20220727-190511)",
+          "name": "Apple - Macintosh (Uncategorized) (20220727-190511)",
+          "gameCount": 9
+        },
+        {
+          "id": "Apple - Macintosh (WOZ) (20220727-190511)",
+          "name": "Apple - Macintosh (WOZ) (20220727-190511)",
+          "gameCount": 1
+        },
+        {
+          "id": "Apple - Macintosh (BETA) (Bitstreams) (20220831-024638)",
+          "name": "Apple - Macintosh (BETA) (Bitstreams) (20220831-024638)",
+          "gameCount": 1
+        },
+        {
+          "id": "Apple - Macintosh (BETA) (FluxDumps) (20220831-024638)",
+          "name": "Apple - Macintosh (BETA) (FluxDumps) (20220831-024638)",
+          "gameCount": 405
+        }
+      ]
+    },
+    {
+      "name": "no-intro--apple-bandai.jsonl.zst",
+      "path": "output\\no-intro--apple-bandai.jsonl.zst",
+      "size": 252,
+      "sha256": "8be62773c2ea4485e148c2a1f60fc4fca941b7d2b2925e48959db296487d9c6e",
+      "entryCount": 2,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Apple-Bandai - Pippin (Floppies) (20220623-041333)",
+          "name": "Apple-Bandai - Pippin (Floppies) (20220623-041333)",
+          "gameCount": 2
+        }
+      ]
+    },
+    {
+      "name": "no-intro--arcade.jsonl.zst",
+      "path": "output\\no-intro--arcade.jsonl.zst",
+      "size": 251,
+      "sha256": "a07dfb5030aec22955b9aa1a9e1ebe840d42a631e137f773e2f82992452bda1c",
+      "entryCount": 2,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Arcade - PC-based (20241207-071923)",
+          "name": "Arcade - PC-based (20241207-071923)",
+          "gameCount": 2
+        }
+      ]
+    },
+    {
+      "name": "no-intro--arduboy-inc.jsonl.zst",
+      "path": "output\\no-intro--arduboy-inc.jsonl.zst",
+      "size": 9981,
+      "sha256": "3902e437b8d37ff8ce9ecb50aba72cb6cd611c24272a55e4b11481204c2f7061",
+      "entryCount": 532,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Arduboy Inc - Arduboy (20230528-053947)",
+          "name": "Arduboy Inc - Arduboy (20230528-053947)",
+          "gameCount": 532
+        }
+      ]
+    },
+    {
+      "name": "no-intro--atari.jsonl.zst",
+      "path": "output\\no-intro--atari.jsonl.zst",
+      "size": 62459,
+      "sha256": "2e3189e4a70cf8b3510336c073bcf2bf304e88324708f46fdb9809076a5e1183",
+      "entryCount": 3351,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Atari - 8-bit Family (20260404-070158)",
+          "name": "Atari - 8-bit Family (20260404-070158)",
+          "gameCount": 37
+        },
+        {
+          "id": "Atari - 8-bit Family (Aftermarket) (20260404-070158)",
+          "name": "Atari - 8-bit Family (Aftermarket) (20260404-070158)",
+          "gameCount": 1
+        },
+        {
+          "id": "Atari - 8-bit Family (Kryoflux) (20260404-070158)",
+          "name": "Atari - 8-bit Family (Kryoflux) (20260404-070158)",
+          "gameCount": 3
+        },
+        {
+          "id": "Atari - Atari 2600 (20260405-051359)",
+          "name": "Atari - Atari 2600 (20260405-051359)",
+          "gameCount": 861
+        },
+        {
+          "id": "Atari - Atari 2600 (Aftermarket) (20260405-051359)",
+          "name": "Atari - Atari 2600 (Aftermarket) (20260405-051359)",
+          "gameCount": 42
+        },
+        {
+          "id": "Atari - Atari 5200 (20260213-122147)",
+          "name": "Atari - Atari 5200 (20260213-122147)",
+          "gameCount": 207
+        },
+        {
+          "id": "Atari - Atari 7800 (A78) (20260305-142854)",
+          "name": "Atari - Atari 7800 (A78) (20260305-142854)",
+          "gameCount": 2
+        },
+        {
+          "id": "Atari - Atari 7800 (A78) (Aftermarket) (20260305-142854)",
+          "name": "Atari - Atari 7800 (A78) (Aftermarket) (20260305-142854)",
+          "gameCount": 117
+        },
+        {
+          "id": "Atari - Atari 7800 (BIN) (20260305-142854)",
+          "name": "Atari - Atari 7800 (BIN) (20260305-142854)",
+          "gameCount": 128
+        },
+        {
+          "id": "Atari - Atari 7800 (BIN) (Aftermarket) (20260305-142854)",
+          "name": "Atari - Atari 7800 (BIN) (Aftermarket) (20260305-142854)",
+          "gameCount": 117
+        },
+        {
+          "id": "Atari - Atari Jaguar (ABS) (Aftermarket) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (ABS) (Aftermarket) (20250208-164242)",
+          "gameCount": 29
+        },
+        {
+          "id": "Atari - Atari Jaguar (COF) (Aftermarket) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (COF) (Aftermarket) (20250208-164242)",
+          "gameCount": 21
+        },
+        {
+          "id": "Atari - Atari Jaguar (J64) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (J64) (20250208-164242)",
+          "gameCount": 96
+        },
+        {
+          "id": "Atari - Atari Jaguar (J64) (Aftermarket) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (J64) (Aftermarket) (20250208-164242)",
+          "gameCount": 186
+        },
+        {
+          "id": "Atari - Atari Jaguar (JAG) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (JAG) (20250208-164242)",
+          "gameCount": 1
+        },
+        {
+          "id": "Atari - Atari Jaguar (JAG) (Aftermarket) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (JAG) (Aftermarket) (20250208-164242)",
+          "gameCount": 6
+        },
+        {
+          "id": "Atari - Atari Jaguar (ROM) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (ROM) (20250208-164242)",
+          "gameCount": 91
+        },
+        {
+          "id": "Atari - Atari Jaguar (ROM) (Aftermarket) (20250208-164242)",
+          "name": "Atari - Atari Jaguar (ROM) (Aftermarket) (20250208-164242)",
+          "gameCount": 186
+        },
+        {
+          "id": "Atari - Atari Lynx (BLL) (20251222-090626)",
+          "name": "Atari - Atari Lynx (BLL) (20251222-090626)",
+          "gameCount": 3
+        },
+        {
+          "id": "Atari - Atari Lynx (BLL) (Aftermarket) (20251222-090626)",
+          "name": "Atari - Atari Lynx (BLL) (Aftermarket) (20251222-090626)",
+          "gameCount": 102
+        },
+        {
+          "id": "Atari - Atari Lynx (LNX) (20251222-090626)",
+          "name": "Atari - Atari Lynx (LNX) (20251222-090626)",
+          "gameCount": 18
+        },
+        {
+          "id": "Atari - Atari Lynx (LNX) (Aftermarket) (20251222-090626)",
+          "name": "Atari - Atari Lynx (LNX) (Aftermarket) (20251222-090626)",
+          "gameCount": 280
+        },
+        {
+          "id": "Atari - Atari Lynx (LYX) (20251222-090626)",
+          "name": "Atari - Atari Lynx (LYX) (20251222-090626)",
+          "gameCount": 127
+        },
+        {
+          "id": "Atari - Atari Lynx (LYX) (Aftermarket) (20251222-090626)",
+          "name": "Atari - Atari Lynx (LYX) (Aftermarket) (20251222-090626)",
+          "gameCount": 282
+        },
+        {
+          "id": "Atari - Atari ST (20260222-121844)",
+          "name": "Atari - Atari ST (20260222-121844)",
+          "gameCount": 404
+        },
+        {
+          "id": "Atari - Atari ST (Flux) (20260222-121844)",
+          "name": "Atari - Atari ST (Flux) (20260222-121844)",
+          "gameCount": 4
+        }
+      ]
+    },
+    {
+      "name": "no-intro--bally.jsonl.zst",
+      "path": "output\\no-intro--bally.jsonl.zst",
+      "size": 1615,
+      "sha256": "0bcb868fdead663bc5f181cdab318579f1bbff78828a9763eb6edcab59b7c71e",
+      "entryCount": 79,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Bally - Astrocade (20220411-220423)",
+          "name": "Bally - Astrocade (20220411-220423)",
+          "gameCount": 77
+        },
+        {
+          "id": "Bally - Astrocade (Tapes) (20220914-145554)",
+          "name": "Bally - Astrocade (Tapes) (20220914-145554)",
+          "gameCount": 1
+        },
+        {
+          "id": "Bally - Astrocade (Tapes) (WAV) (20220914-145554)",
+          "name": "Bally - Astrocade (Tapes) (WAV) (20220914-145554)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--bandai.jsonl.zst",
+      "path": "output\\no-intro--bandai.jsonl.zst",
+      "size": 12880,
+      "sha256": "2e13888762bdfece41baf97f4a28b5c7271dd3d896f19ab42a8cdeb6bd82940c",
+      "entryCount": 530,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Bandai - Design Master Denshi Mangajuku (20250220-083729)",
+          "name": "Bandai - Design Master Denshi Mangajuku (20250220-083729)",
+          "gameCount": 9
+        },
+        {
+          "id": "Bandai - Gundam RX-78 (20211124-013520)",
+          "name": "Bandai - Gundam RX-78 (20211124-013520)",
+          "gameCount": 11
+        },
+        {
+          "id": "Bandai - WonderSwan (20260124-123054)",
+          "name": "Bandai - WonderSwan (20260124-123054)",
+          "gameCount": 257
+        },
+        {
+          "id": "Bandai - WonderSwan Color (20251104-101041)",
+          "name": "Bandai - WonderSwan Color (20251104-101041)",
+          "gameCount": 242
+        },
+        {
+          "id": "Bandai - WonderSwan Color (Aftermarket) (20251104-101041)",
+          "name": "Bandai - WonderSwan Color (Aftermarket) (20251104-101041)",
+          "gameCount": 11
+        }
+      ]
+    },
+    {
+      "name": "no-intro--other.jsonl.zst",
+      "path": "output\\no-intro--other.jsonl.zst",
+      "size": 35476,
+      "sha256": "4d0a96b492b461c79db9a6422967a7a863c4a012f066dbcab29c931da17cb48b",
+      "entryCount": 1534,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Bandai Little Jammer (BIN) (20250421-130924)",
+          "name": "Bandai Little Jammer (BIN) (20250421-130924)",
+          "gameCount": 42
+        },
+        {
+          "id": "Bandai Little Jammer Pro (BIN) (20250421-130426)",
+          "name": "Bandai Little Jammer Pro (BIN) (20250421-130426)",
+          "gameCount": 23
+        },
+        {
+          "id": "Project EGG (20230831-231500)",
+          "name": "Project EGG (20230831-231500)",
+          "gameCount": 1469
+        }
+      ]
+    },
+    {
+      "name": "no-intro--benesse.jsonl.zst",
+      "path": "output\\no-intro--benesse.jsonl.zst",
+      "size": 3185,
+      "sha256": "949b5f33b7dd11934576e9c867fd1a1865007a7d4c05adb0c3595a50cc011101",
+      "entryCount": 145,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Benesse - Pocket Challenge V2 (20251024-084348)",
+          "name": "Benesse - Pocket Challenge V2 (20251024-084348)",
+          "gameCount": 66
+        },
+        {
+          "id": "Benesse - Pocket Challenge W (20241116-140635)",
+          "name": "Benesse - Pocket Challenge W (20241116-140635)",
+          "gameCount": 79
+        }
+      ]
+    },
+    {
+      "name": "no-intro--bit-corporation.jsonl.zst",
+      "path": "output\\no-intro--bit-corporation.jsonl.zst",
+      "size": 1395,
+      "sha256": "eab14dc58f26803a7a44f1bdf57c407577c219fbf7bf1f799181225c30848aa7",
+      "entryCount": 64,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Bit Corporation - Gamate (20230627-112619)",
+          "name": "Bit Corporation - Gamate (20230627-112619)",
+          "gameCount": 64
+        }
+      ]
+    },
+    {
+      "name": "no-intro--blaze-entertainment.jsonl.zst",
+      "path": "output\\no-intro--blaze-entertainment.jsonl.zst",
+      "size": 7722,
+      "sha256": "154cb9b519c5cd85c98435441a22abca3fe5d373c9297ecf8e13011fac60bfeb",
+      "entryCount": 105,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Blaze Entertainment - Evercade (20251020-161035)",
+          "name": "Blaze Entertainment - Evercade (20251020-161035)",
+          "gameCount": 105
+        }
+      ]
+    },
+    {
+      "name": "no-intro--casio.jsonl.zst",
+      "path": "output\\no-intro--casio.jsonl.zst",
+      "size": 979,
+      "sha256": "54ec1f8254fd85c9e148178a7cd303ddbfa030ab81fc5e7dac5161c87ce25c9d",
+      "entryCount": 37,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Casio - Loopy (BigEndian) (20231004-134719)",
+          "name": "Casio - Loopy (BigEndian) (20231004-134719)",
+          "gameCount": 12
+        },
+        {
+          "id": "Casio - Loopy (LittleEndian) (20231004-134719)",
+          "name": "Casio - Loopy (LittleEndian) (20231004-134719)",
+          "gameCount": 12
+        },
+        {
+          "id": "Casio - PV-1000 (20200109-103603)",
+          "name": "Casio - PV-1000 (20200109-103603)",
+          "gameCount": 13
+        }
+      ]
+    },
+    {
+      "name": "no-intro--coleco.jsonl.zst",
+      "path": "output\\no-intro--coleco.jsonl.zst",
+      "size": 4223,
+      "sha256": "709e433cd2a1e5c1241cb849a0d2e92c0e28a0f2e9de2c9e9fece032e46c5225",
+      "entryCount": 201,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Coleco - ColecoVision (20250321-153911)",
+          "name": "Coleco - ColecoVision (20250321-153911)",
+          "gameCount": 201
+        }
+      ]
+    },
+    {
+      "name": "no-intro--commodore.jsonl.zst",
+      "path": "output\\no-intro--commodore.jsonl.zst",
+      "size": 188890,
+      "sha256": "3ed499d1b2581536a85493e1bca0b840447a7b5aeacbbd9f1c1d4adb5fc1b698",
+      "entryCount": 7248,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Commodore - Amiga (Bitstream) (20240604-172503)",
+          "name": "Commodore - Amiga (Bitstream) (20240604-172503)",
+          "gameCount": 8
+        },
+        {
+          "id": "Commodore - Amiga (20240604-172503)",
+          "name": "Commodore - Amiga (20240604-172503)",
+          "gameCount": 3176
+        },
+        {
+          "id": "Commodore - Amiga (Flux) (20240604-172503)",
+          "name": "Commodore - Amiga (Flux) (20240604-172503)",
+          "gameCount": 46
+        },
+        {
+          "id": "Commodore - Commodore 64 (20260410-230500)",
+          "name": "Commodore - Commodore 64 (20260410-230500)",
+          "gameCount": 330
+        },
+        {
+          "id": "Commodore - Commodore 64 (Aftermarket) (20260410-230500)",
+          "name": "Commodore - Commodore 64 (Aftermarket) (20260410-230500)",
+          "gameCount": 20
+        },
+        {
+          "id": "Commodore - Commodore 64 (Headerless) (20260410-230500)",
+          "name": "Commodore - Commodore 64 (Headerless) (20260410-230500)",
+          "gameCount": 8
+        },
+        {
+          "id": "Commodore - Commodore 64 (PP) (20230414-015239)",
+          "name": "Commodore - Commodore 64 (PP) (20230414-015239)",
+          "gameCount": 1665
+        },
+        {
+          "id": "Commodore - Commodore 64 (Tapes) (20230804-123725)",
+          "name": "Commodore - Commodore 64 (Tapes) (20230804-123725)",
+          "gameCount": 1684
+        },
+        {
+          "id": "Commodore - Plus-4 (20090105-000000)",
+          "name": "Commodore - Plus-4 (20090105-000000)",
+          "gameCount": 18
+        },
+        {
+          "id": "Commodore - VIC-20 (20231226-072946)",
+          "name": "Commodore - VIC-20 (20231226-072946)",
+          "gameCount": 293
+        }
+      ]
+    },
+    {
+      "name": "no-intro--digital-media-cartridge.jsonl.zst",
+      "path": "output\\no-intro--digital-media-cartridge.jsonl.zst",
+      "size": 219,
+      "sha256": "9f4dcda11ec1d8e446709c7a5a75d002d9f3c28a0a034ecb315f67055a8ea533",
+      "entryCount": 2,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Digital Media Cartridge - Firecore (20240212-194543)",
+          "name": "Digital Media Cartridge - Firecore (20240212-194543)",
+          "gameCount": 2
+        }
+      ]
+    },
+    {
+      "name": "no-intro--emerson.jsonl.zst",
+      "path": "output\\no-intro--emerson.jsonl.zst",
+      "size": 1016,
+      "sha256": "b445d4a75a77fa190470a18c018911d0b26c58d04bcc0fb1f42905fc7e3d0ae2",
+      "entryCount": 48,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Emerson - Arcadia 2001 (20240811-205103)",
+          "name": "Emerson - Arcadia 2001 (20240811-205103)",
+          "gameCount": 48
+        }
+      ]
+    },
+    {
+      "name": "no-intro--entex.jsonl.zst",
+      "path": "output\\no-intro--entex.jsonl.zst",
+      "size": 273,
+      "sha256": "e00a164752c0c3692462eb04598feb1304279ab2a94f4165813519c5980036ac",
+      "entryCount": 5,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Entex - Adventure Vision (20081125-031450)",
+          "name": "Entex - Adventure Vision (20081125-031450)",
+          "gameCount": 5
+        }
+      ]
+    },
+    {
+      "name": "no-intro--epoch.jsonl.zst",
+      "path": "output\\no-intro--epoch.jsonl.zst",
+      "size": 1071,
+      "sha256": "43f09de954de879073c2614e6da83076bb5fc98cc9835956a4e4f39c3f60dd7b",
+      "entryCount": 39,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Epoch - Game Pocket Computer (20211122-141248)",
+          "name": "Epoch - Game Pocket Computer (20211122-141248)",
+          "gameCount": 5
+        },
+        {
+          "id": "Epoch - Super Cassette Vision (20250612-221105)",
+          "name": "Epoch - Super Cassette Vision (20250612-221105)",
+          "gameCount": 34
+        }
+      ]
+    },
+    {
+      "name": "no-intro--fairchild.jsonl.zst",
+      "path": "output\\no-intro--fairchild.jsonl.zst",
+      "size": 1050,
+      "sha256": "89a35c6d7b8235bcc773465ad8847d2d1a3788229fae16a92be221a18887e41c",
+      "entryCount": 37,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Fairchild - Channel F (20120223-000000)",
+          "name": "Fairchild - Channel F (20120223-000000)",
+          "gameCount": 37
+        }
+      ]
+    },
+    {
+      "name": "no-intro--fujitsu.jsonl.zst",
+      "path": "output\\no-intro--fujitsu.jsonl.zst",
+      "size": 27488,
+      "sha256": "0f0173a811c83ddaf3af804e2072d89d8586050d9b6c66d70be3142fb2fc4c04",
+      "entryCount": 406,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Fujitsu - FM Towns (Flux) (20240623-225613)",
+          "name": "Fujitsu - FM Towns (Flux) (20240623-225613)",
+          "gameCount": 42
+        },
+        {
+          "id": "Fujitsu - FM Towns (HDM) (20240623-225613)",
+          "name": "Fujitsu - FM Towns (HDM) (20240623-225613)",
+          "gameCount": 11
+        },
+        {
+          "id": "Fujitsu - FM-7 (Bitstream) (20240623-225430)",
+          "name": "Fujitsu - FM-7 (Bitstream) (20240623-225430)",
+          "gameCount": 9
+        },
+        {
+          "id": "Fujitsu - FM-7 (Flux) (20240623-225430)",
+          "name": "Fujitsu - FM-7 (Flux) (20240623-225430)",
+          "gameCount": 15
+        },
+        {
+          "id": "Fujitsu - FM-7 (Sector) (20240623-225430)",
+          "name": "Fujitsu - FM-7 (Sector) (20240623-225430)",
+          "gameCount": 310
+        },
+        {
+          "id": "Fujitsu - FM-7 (Tapes) (Bitstream) (20230406-075508)",
+          "name": "Fujitsu - FM-7 (Tapes) (Bitstream) (20230406-075508)",
+          "gameCount": 1
+        },
+        {
+          "id": "Fujitsu - FM-7 (Tapes) (Waveform) (20230406-075508)",
+          "name": "Fujitsu - FM-7 (Tapes) (Waveform) (20230406-075508)",
+          "gameCount": 17
+        },
+        {
+          "id": "Fujitsu - FMR50 (Flux) (20220302-115306)",
+          "name": "Fujitsu - FMR50 (Flux) (20220302-115306)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--fukutake-publishing.jsonl.zst",
+      "path": "output\\no-intro--fukutake-publishing.jsonl.zst",
+      "size": 328,
+      "sha256": "a796d16e05d3991b5f224ba112d71fb0f178db5d10d6144976e207959a68e0a9",
+      "entryCount": 13,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Fukutake Publishing - StudyBox (20200113-140743)",
+          "name": "Fukutake Publishing - StudyBox (20200113-140743)",
+          "gameCount": 13
+        }
+      ]
+    },
+    {
+      "name": "no-intro--funtech.jsonl.zst",
+      "path": "output\\no-intro--funtech.jsonl.zst",
+      "size": 488,
+      "sha256": "9f0e8b96cd1f07da03e2f1a6b03f3a5718424e7d479e925cf426f9c5576bf9de",
+      "entryCount": 12,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Funtech - Super Acan (20240927-111000)",
+          "name": "Funtech - Super Acan (20240927-111000)",
+          "gameCount": 12
+        }
+      ]
+    },
+    {
+      "name": "no-intro--gamepark.jsonl.zst",
+      "path": "output\\no-intro--gamepark.jsonl.zst",
+      "size": 1063,
+      "sha256": "821cc4f6aa1a47415b545a27c4d20481ebc1afa4a4d7b4f8362ad3137ae532e1",
+      "entryCount": 36,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "GamePark - GP2X (20220107-114835)",
+          "name": "GamePark - GP2X (20220107-114835)",
+          "gameCount": 1
+        },
+        {
+          "id": "GamePark - GP32 (20100224-080928)",
+          "name": "GamePark - GP32 (20100224-080928)",
+          "gameCount": 35
+        }
+      ]
+    },
+    {
+      "name": "no-intro--gce.jsonl.zst",
+      "path": "output\\no-intro--gce.jsonl.zst",
+      "size": 1185,
+      "sha256": "f015c5c2eb2751c5d276ddce849b8955942e2442f1d934f3d8849b15bd19d7eb",
+      "entryCount": 48,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "GCE - Vectrex (20251117-141044)",
+          "name": "GCE - Vectrex (20251117-141044)",
+          "gameCount": 48
+        }
+      ]
+    },
+    {
+      "name": "no-intro--hartung.jsonl.zst",
+      "path": "output\\no-intro--hartung.jsonl.zst",
+      "size": 561,
+      "sha256": "9828bc08fea2399b8623f2617f1d988f625a5186042cbcf3e6ce8f20040de4ca",
+      "entryCount": 19,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Hartung - Game Master (20211012-064712)",
+          "name": "Hartung - Game Master (20211012-064712)",
+          "gameCount": 19
+        }
+      ]
+    },
+    {
+      "name": "no-intro--hitachi.jsonl.zst",
+      "path": "output\\no-intro--hitachi.jsonl.zst",
+      "size": 305,
+      "sha256": "6be6fc6be7a296bea26b39413ba7c1052eed87bcffc2e3cea486cfd85a81e73a",
+      "entryCount": 6,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Hitachi - S1 (Waveform) (20250815-035640)",
+          "name": "Hitachi - S1 (Waveform) (20250815-035640)",
+          "gameCount": 6
+        }
+      ]
+    },
+    {
+      "name": "no-intro--ibm.jsonl.zst",
+      "path": "output\\no-intro--ibm.jsonl.zst",
+      "size": 348926,
+      "sha256": "5cb5dbfabceef830ed6b33c9f4220681f751e7290b674ce3a788d371a6d9912d",
+      "entryCount": 8378,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "IBM - PC and Compatibles (Flux) (20230507-112016)",
+          "name": "IBM - PC and Compatibles (Flux) (20230507-112016)",
+          "gameCount": 332
+        },
+        {
+          "id": "IBM - PC and Compatibles (IPF) (20230507-112016)",
+          "name": "IBM - PC and Compatibles (IPF) (20230507-112016)",
+          "gameCount": 3
+        },
+        {
+          "id": "IBM - PC and Compatibles (LooseFilesArchive) (20230507-112016)",
+          "name": "IBM - PC and Compatibles (LooseFilesArchive) (20230507-112016)",
+          "gameCount": 1
+        },
+        {
+          "id": "IBM - PC and Compatibles (SCP) (20230507-112016)",
+          "name": "IBM - PC and Compatibles (SCP) (20230507-112016)",
+          "gameCount": 208
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Desura) (20251024-073850)",
+          "name": "IBM - PC and Compatibles (Digital) (Desura) (20251024-073850)",
+          "gameCount": 3397
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Groupees) (20220803-071205)",
+          "name": "IBM - PC and Compatibles (Digital) (Groupees) (20220803-071205)",
+          "gameCount": 1787
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (JAST USA) (20220607-112544)",
+          "name": "IBM - PC and Compatibles (Digital) (JAST USA) (20220607-112544)",
+          "gameCount": 63
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Misc) (20251115-143525)",
+          "name": "IBM - PC and Compatibles (Digital) (Misc) (20251115-143525)",
+          "gameCount": 1638
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Misc) (Hentai) (20251024-075509)",
+          "name": "IBM - PC and Compatibles (Digital) (Misc) (Hentai) (20251024-075509)",
+          "gameCount": 59
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Steam) (Hentai) (20230424-174742)",
+          "name": "IBM - PC and Compatibles (Digital) (Steam) (Hentai) (20230424-174742)",
+          "gameCount": 4
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Unknown) (20220709-010657)",
+          "name": "IBM - PC and Compatibles (Digital) (Unknown) (20220709-010657)",
+          "gameCount": 704
+        },
+        {
+          "id": "IBM - PC and Compatibles (Digital) (Updates and DLC) (20241221-151011)",
+          "name": "IBM - PC and Compatibles (Digital) (Updates and DLC) (20241221-151011)",
+          "gameCount": 149
+        },
+        {
+          "id": "IBM - PC and Compatibles (Flash Media) (20240813-084043)",
+          "name": "IBM - PC and Compatibles (Flash Media) (20240813-084043)",
+          "gameCount": 33
+        }
+      ]
+    },
+    {
+      "name": "no-intro--interton.jsonl.zst",
+      "path": "output\\no-intro--interton.jsonl.zst",
+      "size": 1201,
+      "sha256": "a01c2da1958f2b4fba4195f2bbf0a4f46081a63100d799e267dd63d61cf96ac9",
+      "entryCount": 57,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Interton - VC 4000 (20211122-135810)",
+          "name": "Interton - VC 4000 (20211122-135810)",
+          "gameCount": 57
+        }
+      ]
+    },
+    {
+      "name": "no-intro--ique.jsonl.zst",
+      "path": "output\\no-intro--ique.jsonl.zst",
+      "size": 2067,
+      "sha256": "c24408e1c062a0b2b26a0dfea3faadeb46d6286f90d6a94cd0798b4fc9adbe0f",
+      "entryCount": 119,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "iQue - iQue (CDN) (20260325-023746)",
+          "name": "iQue - iQue (CDN) (20260325-023746)",
+          "gameCount": 79
+        },
+        {
+          "id": "iQue - iQue (Decrypted) (20260325-023746)",
+          "name": "iQue - iQue (Decrypted) (20260325-023746)",
+          "gameCount": 40
+        }
+      ]
+    },
+    {
+      "name": "no-intro--konami.jsonl.zst",
+      "path": "output\\no-intro--konami.jsonl.zst",
+      "size": 651,
+      "sha256": "52a7f0f7bc1c138e34a309f61ce832824df9af639adee0df06d5f18945e5a799",
+      "entryCount": 20,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Konami - Picno (20251120-175800)",
+          "name": "Konami - Picno (20251120-175800)",
+          "gameCount": 20
+        }
+      ]
+    },
+    {
+      "name": "no-intro--leapfrog.jsonl.zst",
+      "path": "output\\no-intro--leapfrog.jsonl.zst",
+      "size": 5557,
+      "sha256": "a926181bdbc77b6aa4ba9f527b27d47401fbaacf0f9de201aa1af443d6749fdb",
+      "entryCount": 207,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "LeapFrog - Explorer (20260224-025116)",
+          "name": "LeapFrog - Explorer (20260224-025116)",
+          "gameCount": 88
+        },
+        {
+          "id": "LeapFrog - LeapPad (20190401-035314)",
+          "name": "LeapFrog - LeapPad (20190401-035314)",
+          "gameCount": 1
+        },
+        {
+          "id": "LeapFrog - Leapster Learning Game System (20260315-132252)",
+          "name": "LeapFrog - Leapster Learning Game System (20260315-132252)",
+          "gameCount": 118
+        }
+      ]
+    },
+    {
+      "name": "no-intro--luxor.jsonl.zst",
+      "path": "output\\no-intro--luxor.jsonl.zst",
+      "size": 899,
+      "sha256": "d96296a7de064826f5c6980b655b1f4d49ddaa802febcf007e7c10e27ba3807a",
+      "entryCount": 2,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Luxor - ABC 800 (Flux) (20220712-142738)",
+          "name": "Luxor - ABC 800 (Flux) (20220712-142738)",
+          "gameCount": 2
+        }
+      ]
+    },
+    {
+      "name": "no-intro--magnavox.jsonl.zst",
+      "path": "output\\no-intro--magnavox.jsonl.zst",
+      "size": 2893,
+      "sha256": "87185c1d9331891045b9160069dc647bd29b29be70ea13bde8c07cab3bcda5cc",
+      "entryCount": 133,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Magnavox - Odyssey 2 (20250723-151315)",
+          "name": "Magnavox - Odyssey 2 (20250723-151315)",
+          "gameCount": 133
+        }
+      ]
+    },
+    {
+      "name": "no-intro--mattel.jsonl.zst",
+      "path": "output\\no-intro--mattel.jsonl.zst",
+      "size": 5792,
+      "sha256": "8b37737e0efe1e0e2d8a5e1f827b55a251f3d6f1c53543cb46e0679ba2f2bc2f",
+      "entryCount": 264,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Mattel - Intellivision (20260304-102057)",
+          "name": "Mattel - Intellivision (20260304-102057)",
+          "gameCount": 208
+        },
+        {
+          "id": "Mattel - Intellivision (Aftermarket) (20260304-102057)",
+          "name": "Mattel - Intellivision (Aftermarket) (20260304-102057)",
+          "gameCount": 56
+        }
+      ]
+    },
+    {
+      "name": "no-intro--microsoft.jsonl.zst",
+      "path": "output\\no-intro--microsoft.jsonl.zst",
+      "size": 927052,
+      "sha256": "c8b710df959abc03d99234d5ad3bf91cc6813748a8ccbf8c8a2c8dd8fc2babb8",
+      "entryCount": 15654,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Microsoft - MSX (20260202-122913)",
+          "name": "Microsoft - MSX (20260202-122913)",
+          "gameCount": 945
+        },
+        {
+          "id": "Microsoft - MSX (Aftermarket) (20260202-122913)",
+          "name": "Microsoft - MSX (Aftermarket) (20260202-122913)",
+          "gameCount": 7
+        },
+        {
+          "id": "Microsoft - MSX2 (20260124-112728)",
+          "name": "Microsoft - MSX2 (20260124-112728)",
+          "gameCount": 198
+        },
+        {
+          "id": "Microsoft - MSX2 (Aftermarket) (20260124-112728)",
+          "name": "Microsoft - MSX2 (Aftermarket) (20260124-112728)",
+          "gameCount": 3
+        },
+        {
+          "id": "Microsoft - Xbox (Development Kit Hard Drives) (20260127-043749)",
+          "name": "Microsoft - Xbox (Development Kit Hard Drives) (20260127-043749)",
+          "gameCount": 5
+        },
+        {
+          "id": "Microsoft - Xbox 360 (Development Kit Hard Drives) (20230411-073408)",
+          "name": "Microsoft - Xbox 360 (Development Kit Hard Drives) (20230411-073408)",
+          "gameCount": 122
+        },
+        {
+          "id": "Microsoft - Xbox 360 (Digital) (20260313-093658)",
+          "name": "Microsoft - Xbox 360 (Digital) (20260313-093658)",
+          "gameCount": 14373
+        },
+        {
+          "id": "Microsoft - Xbox One (Digital) (ExtractedFiles) (20240813-033441)",
+          "name": "Microsoft - Xbox One (Digital) (ExtractedFiles) (20240813-033441)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--milton-bradley.jsonl.zst",
+      "path": "output\\no-intro--milton-bradley.jsonl.zst",
+      "size": 519,
+      "sha256": "eb83d81de3d4cd338e83d05a3e602f2818539ab77c6ff23364cd998d3a3cd05d",
+      "entryCount": 13,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Milton-Bradley - Omni (Waveform) (20220725-135116)",
+          "name": "Milton-Bradley - Omni (Waveform) (20220725-135116)",
+          "gameCount": 13
+        }
+      ]
+    },
+    {
+      "name": "no-intro--mobile.jsonl.zst",
+      "path": "output\\no-intro--mobile.jsonl.zst",
+      "size": 29205,
+      "sha256": "d41699e9d6bba008b80f0e3c6cffc73728d15d0ca454e0db2bf6ceb2b4f68d23",
+      "entryCount": 1389,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Mobile - J2ME (20251208-180029)",
+          "name": "Mobile - J2ME (20251208-180029)",
+          "gameCount": 309
+        },
+        {
+          "id": "Mobile - Palm OS (20240922-194030)",
+          "name": "Mobile - Palm OS (20240922-194030)",
+          "gameCount": 11
+        },
+        {
+          "id": "Mobile - Palm OS (Digital) (20230926-163739)",
+          "name": "Mobile - Palm OS (Digital) (20230926-163739)",
+          "gameCount": 595
+        },
+        {
+          "id": "Mobile - Pocket PC (20220725-120454)",
+          "name": "Mobile - Pocket PC (20220725-120454)",
+          "gameCount": 1
+        },
+        {
+          "id": "Mobile - Pocket PC (Digital) (20221220-122641)",
+          "name": "Mobile - Pocket PC (Digital) (20221220-122641)",
+          "gameCount": 446
+        },
+        {
+          "id": "Mobile - Symbian (20220516-232715)",
+          "name": "Mobile - Symbian (20220516-232715)",
+          "gameCount": 27
+        }
+      ]
+    },
+    {
+      "name": "no-intro--nec.jsonl.zst",
+      "path": "output\\no-intro--nec.jsonl.zst",
+      "size": 20590,
+      "sha256": "4cebf034b68aa8087127a8935715286fcde6a0c36d7e9041f3ab48f73ec23adb",
+      "entryCount": 572,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "NEC - PC Engine - TurboGrafx-16 (20260124-120557)",
+          "name": "NEC - PC Engine - TurboGrafx-16 (20260124-120557)",
+          "gameCount": 462
+        },
+        {
+          "id": "NEC - PC Engine - TurboGrafx-16 (Aftermarket) (20260124-120557)",
+          "name": "NEC - PC Engine - TurboGrafx-16 (Aftermarket) (20260124-120557)",
+          "gameCount": 48
+        },
+        {
+          "id": "NEC - PC Engine SuperGrafx (20250913-112105)",
+          "name": "NEC - PC Engine SuperGrafx (20250913-112105)",
+          "gameCount": 5
+        },
+        {
+          "id": "NEC - PC Engine SuperGrafx (Aftermarket) (20250913-112105)",
+          "name": "NEC - PC Engine SuperGrafx (Aftermarket) (20250913-112105)",
+          "gameCount": 1
+        },
+        {
+          "id": "NEC - PC-88 (Flux) (20220725-151518)",
+          "name": "NEC - PC-88 (Flux) (20220725-151518)",
+          "gameCount": 1
+        },
+        {
+          "id": "NEC - PC-88 (KryoFlux) (20220725-151518)",
+          "name": "NEC - PC-88 (KryoFlux) (20220725-151518)",
+          "gameCount": 2
+        },
+        {
+          "id": "NEC - PC-98 (20231101-162607)",
+          "name": "NEC - PC-98 (20231101-162607)",
+          "gameCount": 24
+        },
+        {
+          "id": "NEC - PC-98 (Flux) (20231101-162607)",
+          "name": "NEC - PC-98 (Flux) (20231101-162607)",
+          "gameCount": 9
+        },
+        {
+          "id": "NEC - PC-98 (Greaseweazle) (20231101-162607)",
+          "name": "NEC - PC-98 (Greaseweazle) (20231101-162607)",
+          "gameCount": 1
+        },
+        {
+          "id": "NEC - PC-98 (HardDisk) (20231101-162607)",
+          "name": "NEC - PC-98 (HardDisk) (20231101-162607)",
+          "gameCount": 10
+        },
+        {
+          "id": "NEC - PC-98 (Uncategorized) (20231101-162607)",
+          "name": "NEC - PC-98 (Uncategorized) (20231101-162607)",
+          "gameCount": 9
+        }
+      ]
+    },
+    {
+      "name": "no-intro--nichibutsu.jsonl.zst",
+      "path": "output\\no-intro--nichibutsu.jsonl.zst",
+      "size": 364,
+      "sha256": "afe6dfddf3cb83be584476578cc772db537f76dd6f5b6cc1dea92695454a2b1a",
+      "entryCount": 8,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Nichibutsu - My Vision (20230724-090438)",
+          "name": "Nichibutsu - My Vision (20230724-090438)",
+          "gameCount": 4
+        },
+        {
+          "id": "Nichibutsu - My Vision (Mame) (20230724-090438)",
+          "name": "Nichibutsu - My Vision (Mame) (20230724-090438)",
+          "gameCount": 4
+        }
+      ]
+    },
+    {
+      "name": "no-intro--nintendo.jsonl.zst",
+      "path": "output\\no-intro--nintendo.jsonl.zst",
+      "size": 2033858,
+      "sha256": "46e8b34e3e67726287ef398fa788e2f3c4f3a1e483b6efeac9862099f5543f52",
+      "entryCount": 82130,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Nintendo - amiibo (20251202-114031)",
+          "name": "Nintendo - amiibo (20251202-114031)",
+          "gameCount": 947
+        },
+        {
+          "id": "Nintendo - Family BASIC (Tapes) (20241007-124902)",
+          "name": "Nintendo - Family BASIC (Tapes) (20241007-124902)",
+          "gameCount": 15
+        },
+        {
+          "id": "Nintendo - Family Computer Disk System (FDS) (20260317-004812)",
+          "name": "Nintendo - Family Computer Disk System (FDS) (20260317-004812)",
+          "gameCount": 404
+        },
+        {
+          "id": "Nintendo - Family Computer Disk System (FDS) (Aftermarket) (20260317-004812)",
+          "name": "Nintendo - Family Computer Disk System (FDS) (Aftermarket) (20260317-004812)",
+          "gameCount": 2
+        },
+        {
+          "id": "Nintendo - Family Computer Disk System (QD) (20260317-004812)",
+          "name": "Nintendo - Family Computer Disk System (QD) (20260317-004812)",
+          "gameCount": 295
+        },
+        {
+          "id": "Nintendo - Family Computer Network System (20220516-232939)",
+          "name": "Nintendo - Family Computer Network System (20220516-232939)",
+          "gameCount": 21
+        },
+        {
+          "id": "Nintendo - Game & Watch (20241105-120946)",
+          "name": "Nintendo - Game & Watch (20241105-120946)",
+          "gameCount": 53
+        },
+        {
+          "id": "Nintendo - Game Boy (20260407-072210)",
+          "name": "Nintendo - Game Boy (20260407-072210)",
+          "gameCount": 1979
+        },
+        {
+          "id": "Nintendo - Game Boy (Aftermarket) (20260407-072210)",
+          "name": "Nintendo - Game Boy (Aftermarket) (20260407-072210)",
+          "gameCount": 318
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (20260407-142719)",
+          "name": "Nintendo - Game Boy Advance (20260407-142719)",
+          "gameCount": 3529
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (Aftermarket) (20260407-142719)",
+          "name": "Nintendo - Game Boy Advance (Aftermarket) (20260407-142719)",
+          "gameCount": 233
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (e-Reader) (20260326-092756)",
+          "name": "Nintendo - Game Boy Advance (e-Reader) (20260326-092756)",
+          "gameCount": 3250
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (e-Reader) (Aftermarket) (20260326-092756)",
+          "name": "Nintendo - Game Boy Advance (e-Reader) (Aftermarket) (20260326-092756)",
+          "gameCount": 8
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (Multiboot) (20260326-142438)",
+          "name": "Nintendo - Game Boy Advance (Multiboot) (20260326-142438)",
+          "gameCount": 131
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (Play-Yan) (20250614-094624)",
+          "name": "Nintendo - Game Boy Advance (Play-Yan) (20250614-094624)",
+          "gameCount": 15
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (Video) (20251114-101831)",
+          "name": "Nintendo - Game Boy Advance (Video) (20251114-101831)",
+          "gameCount": 44
+        },
+        {
+          "id": "Nintendo - Game Boy Advance (Video) (Aftermarket) (20251114-101831)",
+          "name": "Nintendo - Game Boy Advance (Video) (Aftermarket) (20251114-101831)",
+          "gameCount": 64
+        },
+        {
+          "id": "Nintendo - Game Boy Color (20260407-073412)",
+          "name": "Nintendo - Game Boy Color (20260407-073412)",
+          "gameCount": 1975
+        },
+        {
+          "id": "Nintendo - Game Boy Color (Aftermarket) (20260407-073412)",
+          "name": "Nintendo - Game Boy Color (Aftermarket) (20260407-073412)",
+          "gameCount": 601
+        },
+        {
+          "id": "Nintendo - Kiosk Video Compact Flash (CardImage) (20211208-080217)",
+          "name": "Nintendo - Kiosk Video Compact Flash (CardImage) (20211208-080217)",
+          "gameCount": 4
+        },
+        {
+          "id": "Nintendo - Kiosk Video Compact Flash (Extracted) (20211208-080217)",
+          "name": "Nintendo - Kiosk Video Compact Flash (Extracted) (20211208-080217)",
+          "gameCount": 4
+        },
+        {
+          "id": "Nintendo - Misc (20260116-154229)",
+          "name": "Nintendo - Misc (20260116-154229)",
+          "gameCount": 437
+        },
+        {
+          "id": "Nintendo - New Nintendo 3DS (Decrypted) (20251121-060655)",
+          "name": "Nintendo - New Nintendo 3DS (Decrypted) (20251121-060655)",
+          "gameCount": 11
+        },
+        {
+          "id": "Nintendo - New Nintendo 3DS (Encrypted) (20251121-060655)",
+          "name": "Nintendo - New Nintendo 3DS (Encrypted) (20251121-060655)",
+          "gameCount": 11
+        },
+        {
+          "id": "Nintendo - New Nintendo 3DS (Digital) (Deprecated) (20211118-112910)",
+          "name": "Nintendo - New Nintendo 3DS (Digital) (Deprecated) (20211118-112910)",
+          "gameCount": 124
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Decrypted) (20260408-141049)",
+          "name": "Nintendo - Nintendo 3DS (Decrypted) (20260408-141049)",
+          "gameCount": 2155
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Encrypted) (20260408-141049)",
+          "name": "Nintendo - Nintendo 3DS (Encrypted) (20260408-141049)",
+          "gameCount": 2155
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Digital) (CDN) (20260306-063611)",
+          "name": "Nintendo - Nintendo 3DS (Digital) (CDN) (20260306-063611)",
+          "gameCount": 10152
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Digital) (Deprecated) (20240623-225059)",
+          "name": "Nintendo - Nintendo 3DS (Digital) (Deprecated) (20240623-225059)",
+          "gameCount": 977
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Digital) (Dev ROMs) (20260223-023443)",
+          "name": "Nintendo - Nintendo 3DS (Digital) (Dev ROMs) (20260223-023443)",
+          "gameCount": 27
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Digital) (Pre-Install) (20250422-073339)",
+          "name": "Nintendo - Nintendo 3DS (Digital) (Pre-Install) (20250422-073339)",
+          "gameCount": 4
+        },
+        {
+          "id": "Nintendo - Nintendo 3DS (Digital) (SpotPass) (20250620-172952)",
+          "name": "Nintendo - Nintendo 3DS (Digital) (SpotPass) (20250620-172952)",
+          "gameCount": 640
+        },
+        {
+          "id": "Nintendo - Nintendo 64 (BigEndian) (20260408-130838)",
+          "name": "Nintendo - Nintendo 64 (BigEndian) (20260408-130838)",
+          "gameCount": 1155
+        },
+        {
+          "id": "Nintendo - Nintendo 64 (BigEndian) (Aftermarket) (20260408-130838)",
+          "name": "Nintendo - Nintendo 64 (BigEndian) (Aftermarket) (20260408-130838)",
+          "gameCount": 104
+        },
+        {
+          "id": "Nintendo - Nintendo 64 (ByteSwapped) (20260408-130838)",
+          "name": "Nintendo - Nintendo 64 (ByteSwapped) (20260408-130838)",
+          "gameCount": 1155
+        },
+        {
+          "id": "Nintendo - Nintendo 64 (ByteSwapped) (Aftermarket) (20260408-130838)",
+          "name": "Nintendo - Nintendo 64 (ByteSwapped) (Aftermarket) (20260408-130838)",
+          "gameCount": 104
+        },
+        {
+          "id": "Nintendo - Nintendo 64 (Mario no Photopi SmartMedia) (20210514-090046)",
+          "name": "Nintendo - Nintendo 64 (Mario no Photopi SmartMedia) (20210514-090046)",
+          "gameCount": 5
+        },
+        {
+          "id": "Nintendo - Nintendo 64DD (20260221-121754)",
+          "name": "Nintendo - Nintendo 64DD (20260221-121754)",
+          "gameCount": 35
+        },
+        {
+          "id": "Nintendo - Nintendo DS (Decrypted) (20260410-211624)",
+          "name": "Nintendo - Nintendo DS (Decrypted) (20260410-211624)",
+          "gameCount": 7654
+        },
+        {
+          "id": "Nintendo - Nintendo DS (Decrypted) (Aftermarket) (20260410-211624)",
+          "name": "Nintendo - Nintendo DS (Decrypted) (Aftermarket) (20260410-211624)",
+          "gameCount": 22
+        },
+        {
+          "id": "Nintendo - Nintendo DS (Encrypted) (20260410-211624)",
+          "name": "Nintendo - Nintendo DS (Encrypted) (20260410-211624)",
+          "gameCount": 7643
+        },
+        {
+          "id": "Nintendo - Nintendo DS (Encrypted) (Aftermarket) (20260410-211624)",
+          "name": "Nintendo - Nintendo DS (Encrypted) (Aftermarket) (20260410-211624)",
+          "gameCount": 21
+        },
+        {
+          "id": "Nintendo - Nintendo DS (Download Play) (20240712-120512)",
+          "name": "Nintendo - Nintendo DS (Download Play) (20240712-120512)",
+          "gameCount": 699
+        },
+        {
+          "id": "Nintendo - Nintendo DS (DSvision SD cards) (20221023-022924)",
+          "name": "Nintendo - Nintendo DS (DSvision SD cards) (20221023-022924)",
+          "gameCount": 8
+        },
+        {
+          "id": "Nintendo - Nintendo DSi (Decrypted) (20251108-084929)",
+          "name": "Nintendo - Nintendo DSi (Decrypted) (20251108-084929)",
+          "gameCount": 61
+        },
+        {
+          "id": "Nintendo - Nintendo DSi (Encrypted) (20251108-084929)",
+          "name": "Nintendo - Nintendo DSi (Encrypted) (20251108-084929)",
+          "gameCount": 60
+        },
+        {
+          "id": "Nintendo - Nintendo DSi (Digital) (20220506-190731)",
+          "name": "Nintendo - Nintendo DSi (Digital) (20220506-190731)",
+          "gameCount": 1068
+        },
+        {
+          "id": "Nintendo - Nintendo DSi (Digital) (CDN) (Decrypted) (20260228-234052)",
+          "name": "Nintendo - Nintendo DSi (Digital) (CDN) (Decrypted) (20260228-234052)",
+          "gameCount": 1726
+        },
+        {
+          "id": "Nintendo - Nintendo DSi (Digital) (CDN) (Encrypted) (20260228-234052)",
+          "name": "Nintendo - Nintendo DSi (Digital) (CDN) (Encrypted) (20260228-234052)",
+          "gameCount": 1726
+        },
+        {
+          "id": "Nintendo - Nintendo Entertainment System (Headered) (20260409-230939)",
+          "name": "Nintendo - Nintendo Entertainment System (Headered) (20260409-230939)",
+          "gameCount": 4501
+        },
+        {
+          "id": "Nintendo - Nintendo Entertainment System (Headered) (Aftermarket) (20260409-230939)",
+          "name": "Nintendo - Nintendo Entertainment System (Headered) (Aftermarket) (20260409-230939)",
+          "gameCount": 3048
+        },
+        {
+          "id": "Nintendo - Nintendo Entertainment System (Headerless) (20260409-230939)",
+          "name": "Nintendo - Nintendo Entertainment System (Headerless) (20260409-230939)",
+          "gameCount": 4505
+        },
+        {
+          "id": "Nintendo - Nintendo Entertainment System (Headerless) (Aftermarket) (20260409-230939)",
+          "name": "Nintendo - Nintendo Entertainment System (Headerless) (Aftermarket) (20260409-230939)",
+          "gameCount": 3048
+        },
+        {
+          "id": "Nintendo - Nintendo GameCube (Memory Card) (20250808-204836)",
+          "name": "Nintendo - Nintendo GameCube (Memory Card) (20250808-204836)",
+          "gameCount": 23
+        },
+        {
+          "id": "Nintendo - Nintendo GameCube (NPDP Carts) (20260313-183736)",
+          "name": "Nintendo - Nintendo GameCube (NPDP Carts) (20260313-183736)",
+          "gameCount": 33
+        },
+        {
+          "id": "Nintendo - Pokemon Mini (20250407-153358)",
+          "name": "Nintendo - Pokemon Mini (20250407-153358)",
+          "gameCount": 44
+        },
+        {
+          "id": "Nintendo - Pokemon Mini (Aftermarket) (20250407-153358)",
+          "name": "Nintendo - Pokemon Mini (Aftermarket) (20250407-153358)",
+          "gameCount": 2
+        },
+        {
+          "id": "Nintendo - Satellaview (20260322-134432)",
+          "name": "Nintendo - Satellaview (20260322-134432)",
+          "gameCount": 597
+        },
+        {
+          "id": "Nintendo - Satellaview (Aftermarket) (20260322-134432)",
+          "name": "Nintendo - Satellaview (Aftermarket) (20260322-134432)",
+          "gameCount": 1
+        },
+        {
+          "id": "Nintendo - Sufami Turbo (20240622-035607)",
+          "name": "Nintendo - Sufami Turbo (20240622-035607)",
+          "gameCount": 13
+        },
+        {
+          "id": "Nintendo - Super Nintendo Entertainment System (20260410-134717)",
+          "name": "Nintendo - Super Nintendo Entertainment System (20260410-134717)",
+          "gameCount": 4114
+        },
+        {
+          "id": "Nintendo - Super Nintendo Entertainment System (Aftermarket) (20260410-134717)",
+          "name": "Nintendo - Super Nintendo Entertainment System (Aftermarket) (20260410-134717)",
+          "gameCount": 198
+        },
+        {
+          "id": "Nintendo - Virtual Boy (20260405-032110)",
+          "name": "Nintendo - Virtual Boy (20260405-032110)",
+          "gameCount": 33
+        },
+        {
+          "id": "Nintendo - Virtual Boy (Aftermarket) (20260405-032110)",
+          "name": "Nintendo - Virtual Boy (Aftermarket) (20260405-032110)",
+          "gameCount": 46
+        },
+        {
+          "id": "Nintendo - Wallpapers (20230410-103428)",
+          "name": "Nintendo - Wallpapers (20230410-103428)",
+          "gameCount": 25
+        },
+        {
+          "id": "Nintendo - Wii (Development Kit Hard Drives) (20250827-140352)",
+          "name": "Nintendo - Wii (Development Kit Hard Drives) (20250827-140352)",
+          "gameCount": 184
+        },
+        {
+          "id": "Nintendo - Wii (Digital) (CDN) (20251120-175443)",
+          "name": "Nintendo - Wii (Digital) (CDN) (20251120-175443)",
+          "gameCount": 2880
+        },
+        {
+          "id": "Nintendo - Wii (Starlight Fun Center) (20251121-174654)",
+          "name": "Nintendo - Wii (Starlight Fun Center) (20251121-174654)",
+          "gameCount": 23
+        },
+        {
+          "id": "Nintendo - Wii U (Development Kit Hard Drives) (20250424-141246)",
+          "name": "Nintendo - Wii U (Development Kit Hard Drives) (20250424-141246)",
+          "gameCount": 3
+        },
+        {
+          "id": "Nintendo - Wii U (Digital) (CDN) (20260307-084718)",
+          "name": "Nintendo - Wii U (Digital) (CDN) (20260307-084718)",
+          "gameCount": 3682
+        },
+        {
+          "id": "Nintendo - Wii U (Digital) (CDN) (Dev) (20220718-071500)",
+          "name": "Nintendo - Wii U (Digital) (CDN) (Dev) (20220718-071500)",
+          "gameCount": 1137
+        },
+        {
+          "id": "Nintendo - Wii U (Digital) (CDN) (Lotcheck) (20220718-071500)",
+          "name": "Nintendo - Wii U (Digital) (CDN) (Lotcheck) (20220718-071500)",
+          "gameCount": 159
+        }
+      ]
+    },
+    {
+      "name": "no-intro--nokia.jsonl.zst",
+      "path": "output\\no-intro--nokia.jsonl.zst",
+      "size": 193,
+      "sha256": "0d4488ed615335903f873698eccd7ed0c0a66525c0fac7e2cc3d798362e399b4",
+      "entryCount": 1,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Nokia - N-Gage (WIP) (20220220-010530)",
+          "name": "Nokia - N-Gage (WIP) (20220220-010530)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--ouya.jsonl.zst",
+      "path": "output\\no-intro--ouya.jsonl.zst",
+      "size": 33775,
+      "sha256": "20232bac422963b60de45ac1b819fbd7d2100fcf148e842881865340ba48c7a8",
+      "entryCount": 1782,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Ouya - Ouya (20200720-221834)",
+          "name": "Ouya - Ouya (20200720-221834)",
+          "gameCount": 1782
+        }
+      ]
+    },
+    {
+      "name": "no-intro--philips.jsonl.zst",
+      "path": "output\\no-intro--philips.jsonl.zst",
+      "size": 933,
+      "sha256": "f4126cd098ed13835c2f08f2d0c5b557155978e62de5c711e008bda100947ff0",
+      "entryCount": 34,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Philips - Videopac+ (20250423-131120)",
+          "name": "Philips - Videopac+ (20250423-131120)",
+          "gameCount": 34
+        }
+      ]
+    },
+    {
+      "name": "no-intro--rca.jsonl.zst",
+      "path": "output\\no-intro--rca.jsonl.zst",
+      "size": 678,
+      "sha256": "8828cf4f49eddbd824de31c6100e114552570f8c80537d1492333d05cf66669e",
+      "entryCount": 19,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "RCA - Studio II (20260201-053357)",
+          "name": "RCA - Studio II (20260201-053357)",
+          "gameCount": 19
+        }
+      ]
+    },
+    {
+      "name": "no-intro--sanyo.jsonl.zst",
+      "path": "output\\no-intro--sanyo.jsonl.zst",
+      "size": 395,
+      "sha256": "d13abcbe249de4bb0b272c4676cdac45a974ff4f5754a600644718f1132771bb",
+      "entryCount": 2,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Sanyo - MBC-550 (Flux) (20220720-120703)",
+          "name": "Sanyo - MBC-550 (Flux) (20220720-120703)",
+          "gameCount": 2
+        }
+      ]
+    },
+    {
+      "name": "no-intro--sega.jsonl.zst",
+      "path": "output\\no-intro--sega.jsonl.zst",
+      "size": 115730,
+      "sha256": "45028a938c05171c87f720617dfa665981ffa8012a025fba5cbed851fe5c3e3c",
+      "entryCount": 5989,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Sega - 32X (20260317-140429)",
+          "name": "Sega - 32X (20260317-140429)",
+          "gameCount": 213
+        },
+        {
+          "id": "Sega - 32X (Aftermarket) (20260317-140429)",
+          "name": "Sega - 32X (Aftermarket) (20260317-140429)",
+          "gameCount": 14
+        },
+        {
+          "id": "Sega - Beena (20240607-160830)",
+          "name": "Sega - Beena (20240607-160830)",
+          "gameCount": 58
+        },
+        {
+          "id": "Sega - Dreamcast (Development Kit Hard Drives) (20230104-093851)",
+          "name": "Sega - Dreamcast (Development Kit Hard Drives) (20230104-093851)",
+          "gameCount": 12
+        },
+        {
+          "id": "Sega - Dreamcast (Visual Memory Unit) (20230103-091559)",
+          "name": "Sega - Dreamcast (Visual Memory Unit) (20230103-091559)",
+          "gameCount": 1
+        },
+        {
+          "id": "Sega - Game Gear (20260406-070235)",
+          "name": "Sega - Game Gear (20260406-070235)",
+          "gameCount": 827
+        },
+        {
+          "id": "Sega - Game Gear (Aftermarket) (20260406-070235)",
+          "name": "Sega - Game Gear (Aftermarket) (20260406-070235)",
+          "gameCount": 96
+        },
+        {
+          "id": "Sega - Master System - Mark III (20260317-044719)",
+          "name": "Sega - Master System - Mark III (20260317-044719)",
+          "gameCount": 700
+        },
+        {
+          "id": "Sega - Master System - Mark III (Aftermarket) (20260317-044719)",
+          "name": "Sega - Master System - Mark III (Aftermarket) (20260317-044719)",
+          "gameCount": 515
+        },
+        {
+          "id": "Sega - Mega Drive - Genesis (20260409-230535)",
+          "name": "Sega - Mega Drive - Genesis (20260409-230535)",
+          "gameCount": 2859
+        },
+        {
+          "id": "Sega - PICO (20250220-080006)",
+          "name": "Sega - PICO (20250220-080006)",
+          "gameCount": 447
+        },
+        {
+          "id": "Sega - SG-1000 - SC-3000 (20231205-110448)",
+          "name": "Sega - SG-1000 - SC-3000 (20231205-110448)",
+          "gameCount": 242
+        },
+        {
+          "id": "Sega - SG-1000 - SC-3000 (Aftermarket) (20231205-110448)",
+          "name": "Sega - SG-1000 - SC-3000 (Aftermarket) (20231205-110448)",
+          "gameCount": 5
+        }
+      ]
+    },
+    {
+      "name": "no-intro--seta.jsonl.zst",
+      "path": "output\\no-intro--seta.jsonl.zst",
+      "size": 719,
+      "sha256": "00f29f5b4a74f15ba7cbc946801f844f8de6238cd593a72b9ca71c6a8e1bc446",
+      "entryCount": 28,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Seta - Aleck64 (BigEndian) (20220513-040448)",
+          "name": "Seta - Aleck64 (BigEndian) (20220513-040448)",
+          "gameCount": 14
+        },
+        {
+          "id": "Seta - Aleck64 (ByteSwapped) (20220513-040448)",
+          "name": "Seta - Aleck64 (ByteSwapped) (20220513-040448)",
+          "gameCount": 14
+        }
+      ]
+    },
+    {
+      "name": "no-intro--sharp.jsonl.zst",
+      "path": "output\\no-intro--sharp.jsonl.zst",
+      "size": 1424,
+      "sha256": "11e7bd85c2c23a800e53656b18425e5c6deecd8bddcacd46d0ec506f88d5c496",
+      "entryCount": 25,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Sharp - MZ-2200 (Waveform) (20220726-061910)",
+          "name": "Sharp - MZ-2200 (Waveform) (20220726-061910)",
+          "gameCount": 9
+        },
+        {
+          "id": "Sharp - MZ-700 (Waveform) (20220724-142320)",
+          "name": "Sharp - MZ-700 (Waveform) (20220724-142320)",
+          "gameCount": 7
+        },
+        {
+          "id": "Sharp - X1 (Waveform) (20220720-115216)",
+          "name": "Sharp - X1 (Waveform) (20220720-115216)",
+          "gameCount": 8
+        },
+        {
+          "id": "Sharp - X68000 (Flux) (20220302-045947)",
+          "name": "Sharp - X68000 (Flux) (20220302-045947)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--sinclair.jsonl.zst",
+      "path": "output\\no-intro--sinclair.jsonl.zst",
+      "size": 3037,
+      "sha256": "b44cdf45988f3b11146aaf30b57f3a5b4c3ab0445ee8e694ac0c559d12d29823",
+      "entryCount": 130,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Sinclair - ZX Spectrum +3 (20161210-235900)",
+          "name": "Sinclair - ZX Spectrum +3 (20161210-235900)",
+          "gameCount": 130
+        }
+      ]
+    },
+    {
+      "name": "no-intro--snk.jsonl.zst",
+      "path": "output\\no-intro--snk.jsonl.zst",
+      "size": 3432,
+      "sha256": "07035dc67484d580e562c60de7468e196962767fec7b557db6c4dc67419a8ad7",
+      "entryCount": 141,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "SNK - NeoGeo Pocket (20250904-215533)",
+          "name": "SNK - NeoGeo Pocket (20250904-215533)",
+          "gameCount": 13
+        },
+        {
+          "id": "SNK - NeoGeo Pocket Color (20240506-123728)",
+          "name": "SNK - NeoGeo Pocket Color (20240506-123728)",
+          "gameCount": 128
+        }
+      ]
+    },
+    {
+      "name": "no-intro--sony.jsonl.zst",
+      "path": "output\\no-intro--sony.jsonl.zst",
+      "size": 5387427,
+      "sha256": "56ef097d914333707720989ee98ecb9122fff26e0fac329dfd000a8f5e1cb037",
+      "entryCount": 80145,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Sony - PlayStation (PS one Classics) (PSN) (20251228-171141)",
+          "name": "Sony - PlayStation (PS one Classics) (PSN) (20251228-171141)",
+          "gameCount": 1425
+        },
+        {
+          "id": "Sony - PlayStation 3 (Development Kit Hard Drives) (Decrypted) (20220831-060008)",
+          "name": "Sony - PlayStation 3 (Development Kit Hard Drives) (Decrypted) (20220831-060008)",
+          "gameCount": 1
+        },
+        {
+          "id": "Sony - PlayStation 3 (PSN) (Avatars) (20251221-064935)",
+          "name": "Sony - PlayStation 3 (PSN) (Avatars) (20251221-064935)",
+          "gameCount": 2687
+        },
+        {
+          "id": "Sony - PlayStation 3 (PSN) (Content) (20251230-064409)",
+          "name": "Sony - PlayStation 3 (PSN) (Content) (20251230-064409)",
+          "gameCount": 6659
+        },
+        {
+          "id": "Sony - PlayStation 3 (PSN) (DLC) (20251207-104612)",
+          "name": "Sony - PlayStation 3 (PSN) (DLC) (20251207-104612)",
+          "gameCount": 23433
+        },
+        {
+          "id": "Sony - PlayStation 3 (PSN) (Themes) (20251229-103408)",
+          "name": "Sony - PlayStation 3 (PSN) (Themes) (20251229-103408)",
+          "gameCount": 1532
+        },
+        {
+          "id": "Sony - PlayStation 3 (PSN) (Updates) (20260331-014259)",
+          "name": "Sony - PlayStation 3 (PSN) (Updates) (20260331-014259)",
+          "gameCount": 12154
+        },
+        {
+          "id": "Sony - PlayStation Mobile (PSN) (20200524-163740)",
+          "name": "Sony - PlayStation Mobile (PSN) (20200524-163740)",
+          "gameCount": 1169
+        },
+        {
+          "id": "Sony - PlayStation Portable (PSN) (Decrypted) (20260316-142401)",
+          "name": "Sony - PlayStation Portable (PSN) (Decrypted) (20260316-142401)",
+          "gameCount": 4250
+        },
+        {
+          "id": "Sony - PlayStation Portable (PSN) (Encrypted) (20260316-142401)",
+          "name": "Sony - PlayStation Portable (PSN) (Encrypted) (20260316-142401)",
+          "gameCount": 4255
+        },
+        {
+          "id": "Sony - PlayStation Portable (PSN) (Minis) (Decrypted) (20251222-175857)",
+          "name": "Sony - PlayStation Portable (PSN) (Minis) (Decrypted) (20251222-175857)",
+          "gameCount": 553
+        },
+        {
+          "id": "Sony - PlayStation Portable (PSN) (Minis) (Encrypted) (20251222-175857)",
+          "name": "Sony - PlayStation Portable (PSN) (Minis) (Encrypted) (20251222-175857)",
+          "gameCount": 553
+        },
+        {
+          "id": "Sony - PlayStation Vita (PSN) (Content) (20260116-223543)",
+          "name": "Sony - PlayStation Vita (PSN) (Content) (20260116-223543)",
+          "gameCount": 17505
+        },
+        {
+          "id": "Sony - PlayStation Vita (PSN) (Updates) (20250724-193756)",
+          "name": "Sony - PlayStation Vita (PSN) (Updates) (20250724-193756)",
+          "gameCount": 3969
+        }
+      ]
+    },
+    {
+      "name": "no-intro--telenova.jsonl.zst",
+      "path": "output\\no-intro--telenova.jsonl.zst",
+      "size": 1143,
+      "sha256": "ba100db84bb3806c2e2c6fd19f90be0275bca0170e1d06effff60495609491c6",
+      "entryCount": 4,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "TeleNova - Compis (Flux) (20220712-150715)",
+          "name": "TeleNova - Compis (Flux) (20220712-150715)",
+          "gameCount": 4
+        }
+      ]
+    },
+    {
+      "name": "no-intro--texas-instruments.jsonl.zst",
+      "path": "output\\no-intro--texas-instruments.jsonl.zst",
+      "size": 364,
+      "sha256": "91ab5a3ff83488bece2bd804be049598a2f603def67c8755d79657c506def12b",
+      "entryCount": 9,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Texas Instruments - TI-99-4A (A2R) (20221123-054417)",
+          "name": "Texas Instruments - TI-99-4A (A2R) (20221123-054417)",
+          "gameCount": 9
+        }
+      ]
+    },
+    {
+      "name": "no-intro--tiger.jsonl.zst",
+      "path": "output\\no-intro--tiger.jsonl.zst",
+      "size": 50662,
+      "sha256": "7b06126933657c254a5b872e4867fa6171c87278d08c9cb801a8bc723701b12c",
+      "entryCount": 52,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Tiger - Game.com (20221031-184634)",
+          "name": "Tiger - Game.com (20221031-184634)",
+          "gameCount": 25
+        },
+        {
+          "id": "Tiger - Gizmondo (20070531-125518)",
+          "name": "Tiger - Gizmondo (20070531-125518)",
+          "gameCount": 27
+        }
+      ]
+    },
+    {
+      "name": "no-intro--toshiba.jsonl.zst",
+      "path": "output\\no-intro--toshiba.jsonl.zst",
+      "size": 761,
+      "sha256": "d519a55d27fd056d88cf5812e3136f064b42bd7acaabfd20c4c36ca64eedef99",
+      "entryCount": 22,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Toshiba - Pasopia (BIN) (20220726-115432)",
+          "name": "Toshiba - Pasopia (BIN) (20220726-115432)",
+          "gameCount": 9
+        },
+        {
+          "id": "Toshiba - Pasopia (WAV) (20220726-115432)",
+          "name": "Toshiba - Pasopia (WAV) (20220726-115432)",
+          "gameCount": 6
+        },
+        {
+          "id": "Toshiba - Visicom (20260201-050255)",
+          "name": "Toshiba - Visicom (20260201-050255)",
+          "gameCount": 7
+        }
+      ]
+    },
+    {
+      "name": "no-intro--vm-labs.jsonl.zst",
+      "path": "output\\no-intro--vm-labs.jsonl.zst",
+      "size": 837,
+      "sha256": "994d5abf83211588d7a644416c3a94bbaaf04f1327571c1ad594b6e5bbef5b63",
+      "entryCount": 24,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "VM Labs - NUON (Digital) (20241204-163311)",
+          "name": "VM Labs - NUON (Digital) (20241204-163311)",
+          "gameCount": 24
+        }
+      ]
+    },
+    {
+      "name": "no-intro--vtech.jsonl.zst",
+      "path": "output\\no-intro--vtech.jsonl.zst",
+      "size": 13668,
+      "sha256": "11d333ee08ef8f9c2d654105d0a689b32e3756a9560aed72ce021b71dbaf959e",
+      "entryCount": 542,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "VTech - CreatiVision (20240623-224553)",
+          "name": "VTech - CreatiVision (20240623-224553)",
+          "gameCount": 39
+        },
+        {
+          "id": "VTech - Mobigo (20260316-034916)",
+          "name": "VTech - Mobigo (20260316-034916)",
+          "gameCount": 45
+        },
+        {
+          "id": "VTech - V.Smile (20260407-012112)",
+          "name": "VTech - V.Smile (20260407-012112)",
+          "gameCount": 458
+        }
+      ]
+    },
+    {
+      "name": "no-intro--watara.jsonl.zst",
+      "path": "output\\no-intro--watara.jsonl.zst",
+      "size": 1587,
+      "sha256": "abaac18c84ccbba96dd39e8f03cc55e13a428d66cdf6a9d78faa97d11f2cc499",
+      "entryCount": 74,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Watara - Supervision (20250625-093232)",
+          "name": "Watara - Supervision (20250625-093232)",
+          "gameCount": 73
+        },
+        {
+          "id": "Watara - Supervision (Aftermarket) (20250625-093232)",
+          "name": "Watara - Supervision (Aftermarket) (20250625-093232)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--welback.jsonl.zst",
+      "path": "output\\no-intro--welback.jsonl.zst",
+      "size": 702,
+      "sha256": "d2b36b83897950583687f3c0eacfac5b1030879d1a2048975a83c0e6d114533b",
+      "entryCount": 26,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Welback - Mega Duck (20240623-225207)",
+          "name": "Welback - Mega Duck (20240623-225207)",
+          "gameCount": 25
+        },
+        {
+          "id": "Welback - Mega Duck (Aftermarket) (20240623-225207)",
+          "name": "Welback - Mega Duck (Aftermarket) (20240623-225207)",
+          "gameCount": 1
+        }
+      ]
+    },
+    {
+      "name": "no-intro--yamaha.jsonl.zst",
+      "path": "output\\no-intro--yamaha.jsonl.zst",
+      "size": 372,
+      "sha256": "05dfffb18828272646417a9d50b2ad05e88be3004ee66e26536f7be22f9ba4f2",
+      "entryCount": 8,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Yamaha - Copera (20211125-171549)",
+          "name": "Yamaha - Copera (20211125-171549)",
+          "gameCount": 8
+        }
+      ]
+    },
+    {
+      "name": "no-intro--zeebo.jsonl.zst",
+      "path": "output\\no-intro--zeebo.jsonl.zst",
+      "size": 13407,
+      "sha256": "32a50a29347b8c0e7f10283e0b18ac96460148b21b2549aaad58c91316d54913",
+      "entryCount": 61,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Zeebo - Zeebo (20190815-004208)",
+          "name": "Zeebo - Zeebo (20190815-004208)",
+          "gameCount": 61
+        }
+      ]
+    },
+    {
+      "name": "no-intro--unofficial.jsonl.zst",
+      "path": "output\\no-intro--unofficial.jsonl.zst",
+      "size": 2115337,
+      "sha256": "de61a4141344d50e93f7e2306fd914a44aca5fb0b8f20035a804e7cf607ce038",
+      "entryCount": 25303,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Unofficial - Microsoft - Xbox 360 (Title Updates) (20220623-103723)",
+          "name": "Unofficial - Microsoft - Xbox 360 (Title Updates) (20220623-103723)",
+          "gameCount": 1409
+        },
+        {
+          "id": "Unofficial - Nintendo - Nintendo 3DS (Digital) (Updates and DLC) (Decrypted) (20230502-011510)",
+          "name": "Unofficial - Nintendo - Nintendo 3DS (Digital) (Updates and DLC) (Decrypted) (20230502-011510)",
+          "gameCount": 13
+        },
+        {
+          "id": "Unofficial - Nintendo - Nintendo 3DS (Digital) (Updates and DLC) (Encrypted) (20230502-011510)",
+          "name": "Unofficial - Nintendo - Nintendo 3DS (Digital) (Updates and DLC) (Encrypted) (20230502-011510)",
+          "gameCount": 2146
+        },
+        {
+          "id": "Unofficial - Nintendo - Wii (Digital) (Deprecated) (WAD) (20251120-175247)",
+          "name": "Unofficial - Nintendo - Wii (Digital) (Deprecated) (WAD) (20251120-175247)",
+          "gameCount": 3286
+        },
+        {
+          "id": "Unofficial - Nintendo - Wii (Digital) (Split DLC) (Deprecated) (WAD) (20190825-031431)",
+          "name": "Unofficial - Nintendo - Wii (Digital) (Split DLC) (Deprecated) (WAD) (20190825-031431)",
+          "gameCount": 4839
+        },
+        {
+          "id": "Unofficial - Nintendo - Wii U (Digital) (Deprecated) (20191222-002825)",
+          "name": "Unofficial - Nintendo - Wii U (Digital) (Deprecated) (20191222-002825)",
+          "gameCount": 142
+        },
+        {
+          "id": "Unofficial - Obscure Gamers (20250729-051842)",
+          "name": "Unofficial - Obscure Gamers (20250729-051842)",
+          "gameCount": 67
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation 3 (BD-Video Extras) (20260227-170125)",
+          "name": "Unofficial - Sony - PlayStation 3 (BD-Video Extras) (20260227-170125)",
+          "gameCount": 17
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation 3 (PSN) (Decrypted) (20180429-070319)",
+          "name": "Unofficial - Sony - PlayStation 3 (PSN) (Decrypted) (20180429-070319)",
+          "gameCount": 281
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation 4 (PSN) (20230925-001500)",
+          "name": "Unofficial - Sony - PlayStation 4 (PSN) (20230925-001500)",
+          "gameCount": 7294
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Portable (PSN) (Decrypted) (20251120-174859)",
+          "name": "Unofficial - Sony - PlayStation Portable (PSN) (Decrypted) (20251120-174859)",
+          "gameCount": 405
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Portable (PSX2PSP) (20130318-035538)",
+          "name": "Unofficial - Sony - PlayStation Portable (PSX2PSP) (20130318-035538)",
+          "gameCount": 345
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Portable (UMD Music) (20231230-080356)",
+          "name": "Unofficial - Sony - PlayStation Portable (UMD Music) (20231230-080356)",
+          "gameCount": 67
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Portable (UMD Video) (20251024-151745)",
+          "name": "Unofficial - Sony - PlayStation Portable (UMD Video) (20251024-151745)",
+          "gameCount": 1139
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Vita (BlackFinPSV) (20260117-010911)",
+          "name": "Unofficial - Sony - PlayStation Vita (BlackFinPSV) (20260117-010911)",
+          "gameCount": 67
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Vita (NoNpDrm) (20260117-010911)",
+          "name": "Unofficial - Sony - PlayStation Vita (NoNpDrm) (20260117-010911)",
+          "gameCount": 452
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Vita (PSVgameSD) (20260117-010911)",
+          "name": "Unofficial - Sony - PlayStation Vita (PSVgameSD) (20260117-010911)",
+          "gameCount": 383
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Vita (VPK) (20260117-010911)",
+          "name": "Unofficial - Sony - PlayStation Vita (VPK) (20260117-010911)",
+          "gameCount": 240
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Vita (PSN) (Decrypted) (NoNpDrm) (20220715-105412)",
+          "name": "Unofficial - Sony - PlayStation Vita (PSN) (Decrypted) (NoNpDrm) (20220715-105412)",
+          "gameCount": 1
+        },
+        {
+          "id": "Unofficial - Sony - PlayStation Vita (PSN) (Decrypted) (VPK) (20220715-105412)",
+          "name": "Unofficial - Sony - PlayStation Vita (PSN) (Decrypted) (VPK) (20220715-105412)",
+          "gameCount": 50
+        },
+        {
+          "id": "Unofficial - Super Mario Maker Courses (WARC) (20240403-214022)",
+          "name": "Unofficial - Super Mario Maker Courses (WARC) (20240403-214022)",
+          "gameCount": 1001
+        },
+        {
+          "id": "Unofficial - Video Game Documents (PDF) (20221123-054502)",
+          "name": "Unofficial - Video Game Documents (PDF) (20221123-054502)",
+          "gameCount": 1
+        },
+        {
+          "id": "Unofficial - Video Game Magazine Scans (CBZ) (20220824-051032)",
+          "name": "Unofficial - Video Game Magazine Scans (CBZ) (20220824-051032)",
+          "gameCount": 195
+        },
+        {
+          "id": "Unofficial - Video Game Magazine Scans (PDF) (20220824-051032)",
+          "name": "Unofficial - Video Game Magazine Scans (PDF) (20220824-051032)",
+          "gameCount": 595
+        },
+        {
+          "id": "Unofficial - Video Game Magazine Scans (RAW) (20220824-051032)",
+          "name": "Unofficial - Video Game Magazine Scans (RAW) (20220824-051032)",
+          "gameCount": 196
+        },
+        {
+          "id": "Unofficial - Video Game Manual Scans (JPEG) (20221116-105355)",
+          "name": "Unofficial - Video Game Manual Scans (JPEG) (20221116-105355)",
+          "gameCount": 3
+        },
+        {
+          "id": "Unofficial - Video Game OSTs (Digital) (RAW) (20241002-175806)",
+          "name": "Unofficial - Video Game OSTs (Digital) (RAW) (20241002-175806)",
+          "gameCount": 63
+        },
+        {
+          "id": "Unofficial - Video Game OSTs (Hardware Recordings) (20250425-053337)",
+          "name": "Unofficial - Video Game OSTs (Hardware Recordings) (20250425-053337)",
+          "gameCount": 388
+        },
+        {
+          "id": "Unofficial - Video Game OSTs (Playbutton) (20221103-212144)",
+          "name": "Unofficial - Video Game OSTs (Playbutton) (20221103-212144)",
+          "gameCount": 3
+        },
+        {
+          "id": "Unofficial - Video Game Scans (RAW) (20230712-063322)",
+          "name": "Unofficial - Video Game Scans (RAW) (20230712-063322)",
+          "gameCount": 215
+        }
+      ]
+    },
+    {
+      "name": "no-intro--non-redump.jsonl.zst",
+      "path": "output\\no-intro--non-redump.jsonl.zst",
+      "size": 94991,
+      "sha256": "5319534126a14342290a142ad664391a52e85fba88c2e916ae229a2c2f27c6e2",
+      "entryCount": 2171,
+      "op": "upsert",
+      "systems": [
+        {
+          "id": "Non-Redump - Apple-Bandai - Pippin (20250627-120411)",
+          "name": "Non-Redump - Apple-Bandai - Pippin (20250627-120411)",
+          "gameCount": 76
+        },
+        {
+          "id": "Non-Redump - Atari - Atari Jaguar CD (20260410-142305)",
+          "name": "Non-Redump - Atari - Atari Jaguar CD (20260410-142305)",
+          "gameCount": 19
+        },
+        {
+          "id": "Non-Redump - Audio CD (20250702-072942)",
+          "name": "Non-Redump - Audio CD (20250702-072942)",
+          "gameCount": 28
+        },
+        {
+          "id": "Non-Redump - BD-Video (20260226-113122)",
+          "name": "Non-Redump - BD-Video (20260226-113122)",
+          "gameCount": 4
+        },
+        {
+          "id": "Non-Redump - Capcom - Play System III (20250421-145612)",
+          "name": "Non-Redump - Capcom - Play System III (20250421-145612)",
+          "gameCount": 3
+        },
+        {
+          "id": "Non-Redump - Commodore - Amiga CD (20260409-114609)",
+          "name": "Non-Redump - Commodore - Amiga CD (20260409-114609)",
+          "gameCount": 5
+        },
+        {
+          "id": "Non-Redump - Commodore - Amiga CD32 (20260409-122618)",
+          "name": "Non-Redump - Commodore - Amiga CD32 (20260409-122618)",
+          "gameCount": 6
+        },
+        {
+          "id": "Non-Redump - Commodore - Amiga CDTV (20260409-113749)",
+          "name": "Non-Redump - Commodore - Amiga CDTV (20260409-113749)",
+          "gameCount": 1
+        },
+        {
+          "id": "Non-Redump - DVD-Video (20260331-110627)",
+          "name": "Non-Redump - DVD-Video (20260331-110627)",
+          "gameCount": 30
+        },
+        {
+          "id": "Non-Redump - FuRyu & Omron - Purikura (20250422-015128)",
+          "name": "Non-Redump - FuRyu & Omron - Purikura (20250422-015128)",
+          "gameCount": 10
+        },
+        {
+          "id": "Non-Redump - Hasbro - iON Educational Gaming System (20230320-151656)",
+          "name": "Non-Redump - Hasbro - iON Educational Gaming System (20230320-151656)",
+          "gameCount": 5
+        },
+        {
+          "id": "Non-Redump - IBM - PC Compatible (Discs) (20260102-122448)",
+          "name": "Non-Redump - IBM - PC Compatible (Discs) (20260102-122448)",
+          "gameCount": 388
+        },
+        {
+          "id": "Non-Redump - IBM - PC Compatible (Discs) (Hentai) (20230818-230002)",
+          "name": "Non-Redump - IBM - PC Compatible (Discs) (Hentai) (20230818-230002)",
+          "gameCount": 105
+        },
+        {
+          "id": "Non-Redump - Konami - M2 (20251001-063748)",
+          "name": "Non-Redump - Konami - M2 (20251001-063748)",
+          "gameCount": 5
+        },
+        {
+          "id": "Non-Redump - Konami - Python 2 (20250909-091536)",
+          "name": "Non-Redump - Konami - Python 2 (20250909-091536)",
+          "gameCount": 4
+        },
+        {
+          "id": "Non-Redump - Merit Megatouch (20230411-180804)",
+          "name": "Non-Redump - Merit Megatouch (20230411-180804)",
+          "gameCount": 2
+        },
+        {
+          "id": "Non-Redump - Microsoft - Pocket PC (20251020-161845)",
+          "name": "Non-Redump - Microsoft - Pocket PC (20251020-161845)",
+          "gameCount": 2
+        },
+        {
+          "id": "Non-Redump - Microsoft - Xbox (20251215-001810)",
+          "name": "Non-Redump - Microsoft - Xbox (20251215-001810)",
+          "gameCount": 18
+        },
+        {
+          "id": "Non-Redump - Microsoft - Xbox 360 (20251219-035655)",
+          "name": "Non-Redump - Microsoft - Xbox 360 (20251219-035655)",
+          "gameCount": 33
+        },
+        {
+          "id": "Non-Redump - Namco - Purikura (20250422-015318)",
+          "name": "Non-Redump - Namco - Purikura (20250422-015318)",
+          "gameCount": 8
+        },
+        {
+          "id": "Non-Redump - NEC - PC Engine CD + TurboGrafx CD (20250626-082352)",
+          "name": "Non-Redump - NEC - PC Engine CD + TurboGrafx CD (20250626-082352)",
+          "gameCount": 4
+        },
+        {
+          "id": "Non-Redump - NEC - PC Engine CD + TurboGrafx CD (Aftermarket) (20250626-082352)",
+          "name": "Non-Redump - NEC - PC Engine CD + TurboGrafx CD (Aftermarket) (20250626-082352)",
+          "gameCount": 6
+        },
+        {
+          "id": "Non-Redump - NEC - PC-88 (20230330-093338)",
+          "name": "Non-Redump - NEC - PC-88 (20230330-093338)",
+          "gameCount": 1
+        },
+        {
+          "id": "Non-Redump - Nintendo - Nintendo GameCube (20260302-121810)",
+          "name": "Non-Redump - Nintendo - Nintendo GameCube (20260302-121810)",
+          "gameCount": 54
+        },
+        {
+          "id": "Non-Redump - Nintendo - Nintendo GameCube (Aftermarket) (20260302-121810)",
+          "name": "Non-Redump - Nintendo - Nintendo GameCube (Aftermarket) (20260302-121810)",
+          "gameCount": 9
+        },
+        {
+          "id": "Non-Redump - Nintendo - Wii (20250621-100715)",
+          "name": "Non-Redump - Nintendo - Wii (20250621-100715)",
+          "gameCount": 29
+        },
+        {
+          "id": "Non-Redump - Nintendo - Wii U (20260312-235110)",
+          "name": "Non-Redump - Nintendo - Wii U (20260312-235110)",
+          "gameCount": 3
+        },
+        {
+          "id": "Non-Redump - Panasonic - 3DO Interactive Multiplayer (20250115-113934)",
+          "name": "Non-Redump - Panasonic - 3DO Interactive Multiplayer (20250115-113934)",
+          "gameCount": 12
+        },
+        {
+          "id": "Non-Redump - Philips - CD-i (20251211-155632)",
+          "name": "Non-Redump - Philips - CD-i (20251211-155632)",
+          "gameCount": 124
+        },
+        {
+          "id": "Non-Redump - Philips - CD-i (Aftermarket) (20251211-155632)",
+          "name": "Non-Redump - Philips - CD-i (Aftermarket) (20251211-155632)",
+          "gameCount": 2
+        },
+        {
+          "id": "Non-Redump - Playmaji - Polymega (20250902-103359)",
+          "name": "Non-Redump - Playmaji - Polymega (20250902-103359)",
+          "gameCount": 1
+        },
+        {
+          "id": "Non-Redump - Psion - Psion Series (20260203-164631)",
+          "name": "Non-Redump - Psion - Psion Series (20260203-164631)",
+          "gameCount": 2
+        },
+        {
+          "id": "Non-Redump - Sega - ALLS (20260105-015538)",
+          "name": "Non-Redump - Sega - ALLS (20260105-015538)",
+          "gameCount": 21
+        },
+        {
+          "id": "Non-Redump - Sega - Dreamcast (20250629-084629)",
+          "name": "Non-Redump - Sega - Dreamcast (20250629-084629)",
+          "gameCount": 104
+        },
+        {
+          "id": "Non-Redump - Sega - Dreamcast (Aftermarket) (20250629-084629)",
+          "name": "Non-Redump - Sega - Dreamcast (Aftermarket) (20250629-084629)",
+          "gameCount": 4
+        },
+        {
+          "id": "Non-Redump - Sega - Nu (20260105-024522)",
+          "name": "Non-Redump - Sega - Nu (20260105-024522)",
+          "gameCount": 30
+        },
+        {
+          "id": "Non-Redump - Sega - Nu 1.1 (20260314-052125)",
+          "name": "Non-Redump - Sega - Nu 1.1 (20260314-052125)",
+          "gameCount": 11
+        },
+        {
+          "id": "Non-Redump - Sega - Nu 2 (20241008-041705)",
+          "name": "Non-Redump - Sega - Nu 2 (20241008-041705)",
+          "gameCount": 18
+        },
+        {
+          "id": "Non-Redump - Sega - Nu SX (20240818-013431)",
+          "name": "Non-Redump - Sega - Nu SX (20240818-013431)",
+          "gameCount": 1
+        },
+        {
+          "id": "Non-Redump - Sega - Sega Mega CD + Sega CD (20250523-072006)",
+          "name": "Non-Redump - Sega - Sega Mega CD + Sega CD (20250523-072006)",
+          "gameCount": 19
+        },
+        {
+          "id": "Non-Redump - Sega - Sega Mega CD + Sega CD (Aftermarket) (20250523-072006)",
+          "name": "Non-Redump - Sega - Sega Mega CD + Sega CD (Aftermarket) (20250523-072006)",
+          "gameCount": 2
+        },
+        {
+          "id": "Non-Redump - Sega - Sega Saturn (20260306-190347)",
+          "name": "Non-Redump - Sega - Sega Saturn (20260306-190347)",
+          "gameCount": 54
+        },
+        {
+          "id": "Non-Redump - Sega NAOMI Satellite Terminal PC (20240817-233118)",
+          "name": "Non-Redump - Sega NAOMI Satellite Terminal PC (20240817-233118)",
+          "gameCount": 6
+        },
+        {
+          "id": "Non-Redump - Sharp - Zaurus (20250323-061141)",
+          "name": "Non-Redump - Sharp - Zaurus (20250323-061141)",
+          "gameCount": 2
+        },
+        {
+          "id": "Non-Redump - Sony - PlayStation (20251225-195142)",
+          "name": "Non-Redump - Sony - PlayStation (20251225-195142)",
+          "gameCount": 303
+        },
+        {
+          "id": "Non-Redump - Sony - PlayStation 2 (20251227-042054)",
+          "name": "Non-Redump - Sony - PlayStation 2 (20251227-042054)",
+          "gameCount": 199
+        },
+        {
+          "id": "Non-Redump - Sony - PlayStation 3 (20250908-072347)",
+          "name": "Non-Redump - Sony - PlayStation 3 (20250908-072347)",
+          "gameCount": 1
+        },
+        {
+          "id": "Non-Redump - Sony - PlayStation Portable (20251030-021713)",
+          "name": "Non-Redump - Sony - PlayStation Portable (20251030-021713)",
+          "gameCount": 359
+        },
+        {
+          "id": "Non-Redump - Sony Electronic Book (20231206-181917)",
+          "name": "Non-Redump - Sony Electronic Book (20231206-181917)",
+          "gameCount": 34
+        },
+        {
+          "id": "Non-Redump - VM Labs - NUON (20250226-121737)",
+          "name": "Non-Redump - VM Labs - NUON (20250226-121737)",
+          "gameCount": 1
+        },
+        {
+          "id": "Non-Redump - ZAPiT Games - Game Wave Family Entertainment System (20240202-095344)",
+          "name": "Non-Redump - ZAPiT Games - Game Wave Family Entertainment System (20240202-095344)",
+          "gameCount": 3
+        }
+      ]
+    }
+  ]
+}

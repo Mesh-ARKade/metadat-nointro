@@ -9,6 +9,7 @@
 import { chromium } from 'playwright';
 import path from 'path';
 import fs from 'fs/promises';
+import crypto from 'crypto';
 import unzipper from 'unzipper';
 import { AbstractFetcher, type FetcherOptions } from '../base/base-fetcher.js';
 import { VersionTracker } from '../core/version-tracker.js';
@@ -101,7 +102,11 @@ export class NoIntroFetcher extends AbstractFetcher {
           break;
         } catch (err) {
           attempt++;
-          if (attempt === maxAttempts) throw err;
+          if (attempt === maxAttempts) {
+            // Capture screenshot on final failure before throwing
+            await this.captureErrorScreenshot(page);
+            throw err;
+          }
           console.warn(`[nointro] Navigation attempt ${attempt} failed, retrying...`);
           await new Promise(r => setTimeout(r, 5000));
         }
@@ -148,14 +153,52 @@ export class NoIntroFetcher extends AbstractFetcher {
       await download.saveAs(finalPath);
       console.log(`[nointro] Downloaded: ${finalPath}`);
 
+      // Note: verifyChecksum is not called here because Dat-o-Matic does not
+      // provide an expected checksum for the daily pack download on the UI.
+
       // Extract zip and parse DATs
       const dats = await this.extractAndParse(finalPath);
       console.log(`[nointro] Parsed ${dats.length} games`);
 
       return dats;
+    } catch (err) {
+      // Capture screenshot on any error for debugging
+      await this.captureErrorScreenshot(page);
+      throw err;
     } finally {
       await browser.close();
     }
+  }
+
+  /**
+   * Capture a screenshot on error for debugging
+   * @param page Playwright page instance
+   */
+  private async captureErrorScreenshot(page: any): Promise<void> {
+    try {
+      const screenshotPath = path.join(this.outputDir, 'playwright-error.png');
+      await page.screenshot({ path: screenshotPath });
+      console.log(`[nointro] Error screenshot saved: ${screenshotPath}`);
+    } catch (screenshotErr) {
+      console.warn(`[nointro] Failed to capture error screenshot: ${(screenshotErr as Error).message}`);
+    }
+  }
+
+  /**
+   * Verify checksum of a downloaded file against expected value
+   * @param filePath Path to the downloaded file
+   * @param expectedChecksum Expected checksum value
+   * @param algorithm Hash algorithm (md5, sha1, sha256)
+   */
+  async verifyChecksum(filePath: string, expectedChecksum: string, algorithm: 'md5' | 'sha1' | 'sha256' = 'md5'): Promise<void> {
+    const fileBuffer = await fs.readFile(filePath);
+    const hash = crypto.createHash(algorithm).update(fileBuffer).digest('hex');
+    
+    if (hash !== expectedChecksum.toLowerCase()) {
+      throw new Error(`Checksum verification failed: expected ${expectedChecksum}, got ${hash}`);
+    }
+    
+    console.log(`[nointro] Checksum verified: ${algorithm}=${hash}`);
   }
 
   /**
