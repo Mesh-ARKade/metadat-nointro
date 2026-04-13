@@ -36,7 +36,7 @@ jobs:
         run: |
           curl -s -X POST "$DISCORD_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"⏩ No-Intro Pipeline Started\",\"description\":\"Fetching latest DATs from Dat-o-Matic...\",\"color\":16776960,\"url\":\"$GITHUB_SERVER_URL/Mesh-ARKade/metadat-nointro/actions/runs/$GITHUB_RUN_ID\",\"footer\":{\"text\":\"Mesh-ARKade/metadat-nointro\"}}]}"
+            -d "{\"embeds\":[{\"title\":\"⏩ No-Intro Pipeline Started\",\"description\":\"Fetching latest DATs from Dat-o-Matic...\",\"color\":16776960,\"url\":\"$GITHUB_SERVER_URL/Mesh-ARKade/metadat-nointro/actions/runs/$GITHUB_RUN_ID\",\"fields\":[{\"name\":\"🔗 Links\",\"value\":\"[View Run]($GITHUB_SERVER_URL/Mesh-ARKade/metadat-nointro/actions/runs/$GITHUB_RUN_ID)\",\"inline\":false}],\"footer\":{\"text\":\"Mesh-ARKade/metadat-nointro\"}}]}"
 
       # === BUILD ===
       - name: Install dependencies
